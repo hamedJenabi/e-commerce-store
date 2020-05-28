@@ -1,37 +1,44 @@
 import Head from 'next/head';
 import Link from 'next/link';
 
-export default function Footer() {
+export default function Header_2() {
   return (
     <div>
-      <header className="footer">
+      <header className="header_2">
         <Link href="/">
-          <a>Facebook</a>
+          <a>Women</a>
         </Link>
         <Link href="/">
-          <a>Instagram</a>
+          <a>Uni-Sex</a>
+        </Link>
+        <Link href="/">
+          <a>Men</a>
         </Link>
         <Link href="/about">
-          <a>Twitter</a>
+          <a>Accessories</a>
         </Link>
       </header>
       <style jsx>{`
-        .footer {
+        .header_2 {
           position: static;
-          border-top: 1px solid #000000;
           display: flex;
           flex-direction: row;
-          margin: 40px;
-          justify-content: space-around;
-          height: 20px;
+          justify-content: space-evenly;
+          width: 50%;
+          padding: 20px 0 0 40px;
+          box-shadow: 0 2px 4px -2px rgba(0, 0, 0, 0.2);
         }
 
         a {
-          margin-top: 10px;
           color: black;
           text-transform: uppercase;
           text-decoration: none;
           letter-spacing: 0.15em;
+          text-align: center;
+          display: inline-block;
+          position: relative;
+          width: 250px;
+          height: 40px;
         }
         a:hover {
           transition: 200ms;

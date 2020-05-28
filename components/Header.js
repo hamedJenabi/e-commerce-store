@@ -9,10 +9,25 @@ export default function Header() {
         <Link href="/">
           <a>Home</a>
         </Link>
-        <Link href="/">
-          <a>Products</a>
-        </Link>
-        <img src="/logo.png" />
+        <div className="subnav">
+          <Link href="/">
+            <a className="subnavbtn">
+              Products <i className="fa fa-caret-down"></i>
+            </a>
+          </Link>
+          <div className="subnav-content">
+            <Link href="/">
+              <a>Women</a>
+            </Link>
+            <Link href="/">
+              <a>Men</a>
+            </Link>
+            <Link href="/">
+              <a>Uni-Sex</a>
+            </Link>
+          </div>
+        </div>
+        <img style={{ height: '60px' }} src="/logo.png" />
         <Link href="/">
           <a>coming soon</a>
         </Link>
@@ -23,19 +38,12 @@ export default function Header() {
       <style jsx>{`
         .header {
           display: flex;
+          z-index: -2;
           flex-direction: row;
           justify-content: space-evenly;
           border-bottom: 1px solid black;
+          overflow: hidden;
         }
-
-        /* .navLinks {
-          color: black;
-        }
-        .navLinks :hover {
-          transition: 100ms;
-          color: #ed1212;
-          cursor: pointer;
-        } */
 
         a {
           color: black;
@@ -43,13 +51,13 @@ export default function Header() {
           text-decoration: none;
           letter-spacing: 0.15em;
           text-align: center;
+          padding: 10px 0;
           display: inline-block;
-          padding: 25px 0px 0px;
           position: relative;
           width: 155px;
         }
         a:hover {
-          transition: 200ms;
+          transition: 400ms;
           font-size: 1.1em;
           color: #ed1212;
           cursor: pointer;
@@ -60,6 +68,24 @@ export default function Header() {
           font-size: 1.5em;
           justify-content: flex-end;
           margin: 10px 20px 20px;
+        }
+
+        .subnav .subnavbtn {
+          border: none;
+          outline: none;
+          margin: 0;
+        }
+
+        .subnav-content {
+          padding-top: 20px;
+          display: none;
+          position: absolute;
+          z-index: 1;
+        }
+
+        .subnav:hover .subnav-content {
+          display: flex;
+          flex-direction: column;
         }
       `}</style>
     </div>
