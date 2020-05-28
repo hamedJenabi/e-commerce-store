@@ -21,48 +21,9 @@ export default function men() {
             <p>hey there, I'm</p>
             <h1 style={{ fontSize: '70px' }}>COUNT SHIRTY</h1>
           </div>
-          <div className="row_2">
-            <h4 style={{ marginRight: '-100px' }}>
-              from the moment you put me on,
-            </h4>
-            <h3 style={{ margin: '30px 0' }}> you'll feel light and cool!</h3>
-          </div>
         </div>
         <img className="coverImage" src="/TSHIRTS.jpeg" />
         <Header_2 />
-
-        <h1 className="title">T-Shirt for men</h1>
-
-        <section className="section">
-          <div className="products">
-            {menItems
-              .filter((type) => type.type === 'men')
-              .map((items) => {
-                return (
-                  <Link href={items.url}>
-                    <a>
-                      <div>
-                        <img className="image" src={items.image} />
-
-                        <div className=" productInfos">
-                          <div>My name is: {items.name}</div>
-                          <div>
-                            I am availabe in{' '}
-                            {items.size.map((i) => {
-                              return i + '.';
-                            })}
-                          </div>
-                          <div>I am {items.color}</div>
-                          <div>My price is: €{items.price}</div>
-                          <button className="orderButton">Add to Cart</button>
-                        </div>
-                      </div>
-                    </a>
-                  </Link>
-                );
-              })}
-          </div>
-        </section>
       </main>
       <Footer />
 
@@ -85,12 +46,6 @@ export default function men() {
           text-align: center;
           height: 20vh;
           margin-top: 40px;
-        }
-        .row_2 {
-          display: flex;
-          flex-direction: row;
-          justify-content: center;
-          width: 100%;
         }
         .coverImage {
           margin: 20px 0;

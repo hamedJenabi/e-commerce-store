@@ -10,19 +10,19 @@ export default function Header() {
           <a>Home</a>
         </Link>
         <div className="subnav">
-          <Link href="/">
+          <Link href="">
             <a className="subnavbtn">
               Products <i className="fa fa-caret-down"></i>
             </a>
           </Link>
           <div className="subnav-content">
-            <Link href="/">
+            <Link href="/forwomen">
               <a>Women</a>
             </Link>
-            <Link href="/">
+            <Link href="/formen">
               <a>Men</a>
             </Link>
-            <Link href="/">
+            <Link href="/forall">
               <a>Uni-Sex</a>
             </Link>
           </div>
@@ -43,6 +43,7 @@ export default function Header() {
           justify-content: space-evenly;
           border-bottom: 1px solid black;
           overflow: hidden;
+          margin-bottom: 40px;
         }
 
         a {

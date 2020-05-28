@@ -17,21 +17,26 @@ export default function Footer() {
       </header>
       <style jsx>{`
         .footer {
-          position: static;
-          border-top: 1px solid #000000;
+          border-top: 1px solid #eaeaea;
           display: flex;
           flex-direction: row;
           margin: 40px;
           justify-content: space-around;
-          height: 20px;
+          height: 40px;
+          position: relative;
+          left: 0;
+          bottom: 0;
+          width: 100%;
         }
 
         a {
           margin-top: 10px;
+          width: 300px;
           color: black;
           text-transform: uppercase;
           text-decoration: none;
           letter-spacing: 0.15em;
+          text-align: center;
         }
         a:hover {
           transition: 200ms;

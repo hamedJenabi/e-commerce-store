@@ -5,9 +5,9 @@ import Header from '../components/Header';
 import Header_2 from '../components/Header_2';
 import Footer from '../components/Footer';
 
-const menItems = getProduct();
+const uniSexItems = getProduct();
 
-export default function men() {
+export default function uniSex() {
   return (
     <div className="container">
       <Head>
@@ -30,13 +30,12 @@ export default function men() {
         </div>
         <img className="coverImage" src="/TSHIRTS.jpeg" />
         <Header_2 />
-
-        <h1 className="title">T-Shirt for men</h1>
+        <h1 className="title">T-Shirt for uniSex</h1>
 
         <section className="section">
           <div className="products">
-            {menItems
-              .filter((type) => type.type === 'men')
+            {uniSexItems
+              .filter((type) => type.type === 'uniSex')
               .map((items) => {
                 return (
                   <Link href={items.url}>

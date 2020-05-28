@@ -25,7 +25,7 @@ export default function Header_2() {
           flex-direction: row;
           justify-content: space-evenly;
           width: 50%;
-          padding: 20px 0 0 40px;
+          margin-bottom: 20px;
           box-shadow: 0 2px 4px -2px rgba(0, 0, 0, 0.2);
         }
 
@@ -35,7 +35,6 @@ export default function Header_2() {
           text-decoration: none;
           letter-spacing: 0.15em;
           text-align: center;
-          display: inline-block;
           position: relative;
           width: 250px;
           height: 40px;

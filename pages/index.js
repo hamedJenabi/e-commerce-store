@@ -1,4 +1,6 @@
 import Head from 'next/head';
+import Link from 'next/link';
+
 import Header from '../components/Header';
 import Header_2 from '../components/Header_2';
 import Footer from '../components/Footer';
@@ -21,7 +23,7 @@ export default function Home() {
             <h4 style={{ marginRight: '-100px' }}>
               from the moment you put me on,
             </h4>
-            <h3 style={{ marginTop: '30px' }}> you'll feel light and cool!</h3>
+            <h3 style={{ margin: '30px 0' }}> you'll feel light and cool!</h3>
           </div>
         </div>
         <img className="coverImage" src="/TSHIRTS.jpeg" />
