@@ -38,7 +38,7 @@ export default function uniSex() {
               .filter((type) => type.type === 'uniSex')
               .map((items) => {
                 return (
-                  <Link href={items.url}>
+                  <Link href="/products/[items]" as={'/products/' + items.id}>
                     <a>
                       <div>
                         <img className="image" src={items.image} />
@@ -47,13 +47,18 @@ export default function uniSex() {
                           <div>My name is: {items.name}</div>
                           <div>
                             I am availabe in{' '}
-                            {items.size.map((i) => {
-                              return i + '.';
+                            {items.size.map((size) => {
+                              return size + '.';
                             })}
                           </div>
                           <div>I am {items.color}</div>
                           <div>My price is: €{items.price}</div>
-                          <button className="orderButton">Add to Cart</button>
+                          <div className="buttonSection">
+                            <button className="orderButton">Add to Cart</button>
+                            <button className="orderButton">
+                              Pruduct Details
+                            </button>
+                          </div>
                         </div>
                       </div>
                     </a>
@@ -115,7 +120,6 @@ export default function uniSex() {
           margin: 10px 0 0 10px;
           display: grid;
           justify-content: start;
-
           height: 100%;
           height: 100%;
         }
@@ -142,6 +146,12 @@ export default function uniSex() {
           height: auto;
           z-index: 2;
         }
+        .buttonSection {
+          text-align: center;
+        }
+        .buttonSection * + * {
+          margin: 10px;
+        }
         .orderButton {
           margin-top: 40px;
           background: none;
@@ -153,7 +163,7 @@ export default function uniSex() {
           text-align: center;
           display: inline-block;
           position: relative;
-          width: 150px;
+          width: 170px;
           height: 70px;
           border: 1px solid #c8d8d4cd;
         }

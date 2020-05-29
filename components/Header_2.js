@@ -5,13 +5,13 @@ export default function Header_2() {
   return (
     <div>
       <header className="header_2">
-        <Link href="/">
+        <Link href="/forwomen">
           <a>Women</a>
         </Link>
-        <Link href="/">
+        <Link href="/forall">
           <a>Uni-Sex</a>
         </Link>
-        <Link href="/">
+        <Link href="/formen">
           <a>Men</a>
         </Link>
         <Link href="/about">

@@ -1,71 +1,41 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import { getProduct } from '../db.js';
-import Header from '../components/Header';
-import Header_2 from '../components/Header_2';
-import Footer from '../components/Footer';
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
+import { getProductById } from '../../db.js';
 
-const womenItems = getProduct();
-
-export default function Women() {
+export default function products(props) {
+  if (!props.product) return <div>product not found!</div>;
   return (
     <div className="container">
       <Head>
-        <title>Create Next App</title>
+        <title>CountShirty</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
       <main>
-        <div className="title">
-          <div className="row">
-            <p>hey there, I'm</p>
-            <h1 style={{ fontSize: '70px' }}>COUNT SHIRTY</h1>
-          </div>
-          <div className="row_2">
-            <h4 style={{ marginRight: '-100px' }}>
-              from the moment you put me on,
-            </h4>
-            <h3 style={{ margin: '30px 0' }}> you'll feel light and cool!</h3>
-          </div>
-        </div>
-        <img className="coverImage" src="/TSHIRTS.jpeg" />
-        <Header_2 />
-
-        <h1 className="title">T-Shirt for Women</h1>
-
         <section className="section">
-          <div className="products">
-            {womenItems
-              .filter((type) => type.type === 'women')
-              .map((items) => {
-                return (
-                  <Link href="/products/[items]" as={'/products/' + items.id}>
-                    <a>
-                      <div>
-                        <img className="image" src={items.image} />
-
-                        <div className=" productInfos">
-                          <div>My name is: {items.name}</div>
-                          <div>
-                            I am availabe in{' '}
-                            {items.size.map((i) => {
-                              return i + '.';
-                            })}
-                          </div>
-                          <div>I am {items.color}</div>
-                          <div>My price is: €{items.price}</div>
-                          <div className="buttonSection">
-                            <button className="orderButton">Add to Cart</button>
-                            <button className="orderButton">
-                              Pruduct Details
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </a>
-                  </Link>
-                );
+          <div>
+            <div>here come other images</div>
+          </div>
+          <div>
+            <div>here come other images</div>
+            <img className="image" src={props.product.image}></img>
+          </div>
+          <div className="row">
+            <h1>{props.product.name}</h1>
+            <h3>Size:</h3>
+            <p>
+              {props.product.size.map((size) => {
+                return size + '.';
               })}
+            </p>
+            <p>COMPOSITION 100% cotton - </p>
+            <p>Organic Combed Ring Spun *Sport Grey:</p>
+            <p> made with 90% organically grown cotton. WEIGHT 140 g/m²</p>
+            <div>
+              <button className="orderButton">Add to Cart</button>
+            </div>
           </div>
         </section>
       </main>
@@ -82,13 +52,20 @@ export default function Women() {
           align-items: center;
         }
 
+        .section {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-around;
+
+          height: 100%;
+          overflow: hidden;
+        }
         .row {
           display: flex;
           flex-direction: column;
           justify-content: center;
           width: 50%;
           text-align: center;
-          height: 20vh;
           margin-top: 40px;
         }
         .row_2 {
@@ -97,31 +74,11 @@ export default function Women() {
           justify-content: center;
           width: 100%;
         }
-        .coverImage {
-          margin: 20px 0;
-          width: 100%;
-        }
-        .section {
-          max-width: 100%;
-          overflow: hidden;
-          margin: 40px;
-          display: flex;
-          flex-direction: column;
-          align-content: center;
 
-          height: 100%;
-        }
-        .products {
-          display: flex;
-          flex-wrap: wrap;
-          height: 100%;
-          justify-content: space-around;
-        }
         .productInfos {
           margin: 10px 0 0 10px;
           display: grid;
           justify-content: start;
-
           height: 100%;
           height: 100%;
         }
@@ -130,12 +87,10 @@ export default function Women() {
         }
 
         .image {
-          width: 400px;
+          width: 80%;
           height: auto;
-          position: relative;
           z-index: 1;
-          margin-bottom: 1em;
-          margin-top: 2em;
+
           overflow: hidden;
         }
         .image :hover {
@@ -154,7 +109,6 @@ export default function Women() {
         .buttonSection * + * {
           margin: 10px;
         }
-
         .orderButton {
           margin-top: 40px;
           background: none;
@@ -232,4 +186,16 @@ export default function Women() {
       `}</style>
     </div>
   );
+}
+export function getServerSideProps(context) {
+  const product = getProductById(context.params.items);
+
+  if (product === undefined) {
+    return { props: {} };
+  }
+  return {
+    props: {
+      product,
+    },
+  };
 }

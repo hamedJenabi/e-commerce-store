@@ -27,7 +27,9 @@ export default function Header() {
             </Link>
           </div>
         </div>
-        <img style={{ height: '60px' }} src="/logo.png" />
+        <Link href="/">
+          <img className="icon" src="/logo.png" />
+        </Link>
         <Link href="/">
           <a>coming soon</a>
         </Link>
@@ -44,6 +46,14 @@ export default function Header() {
           border-bottom: 1px solid black;
           overflow: hidden;
           margin-bottom: 40px;
+        }
+        .icon {
+          height: auto;
+          width: auto;
+        }
+        .icon :hover {
+          transition: 400ms;
+          cursor: pointer;
         }
 
         a {
@@ -68,7 +78,7 @@ export default function Header() {
           display: flex;
           font-size: 1.5em;
           justify-content: flex-end;
-          margin: 10px 20px 20px;
+          margin: 10px 20px;
         }
 
         .subnav .subnavbtn {
@@ -87,6 +97,8 @@ export default function Header() {
         .subnav:hover .subnav-content {
           display: flex;
           flex-direction: column;
+          height: 110px;
+          width: 100px;
         }
       `}</style>
     </div>
