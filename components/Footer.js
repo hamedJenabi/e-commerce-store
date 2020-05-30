@@ -11,7 +11,7 @@ export default function Footer() {
         <Link href="/">
           <a>Instagram</a>
         </Link>
-        <Link href="/about">
+        <Link href="/">
           <a>Twitter</a>
         </Link>
       </header>
@@ -20,9 +20,9 @@ export default function Footer() {
           border-top: 1px solid #eaeaea;
           display: flex;
           flex-direction: row;
-          margin: 40px;
           justify-content: space-around;
           height: 40px;
+          margin: 40px 0;
           position: relative;
           left: 0;
           bottom: 0;

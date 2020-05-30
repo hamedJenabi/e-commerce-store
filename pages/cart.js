@@ -7,7 +7,7 @@ import Footer from '../components/Footer';
 
 const menItems = getProduct();
 
-export default function men() {
+export default function cart() {
   return (
     <div className="container">
       <Head>
@@ -15,18 +15,10 @@ export default function men() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <main>
-        <div className="title">
-          <div className="row">
-            <p>hey there, I'm</p>
-            <h1 style={{ fontSize: '70px' }}>COUNT SHIRTY</h1>
-          </div>
-        </div>
-        <img className="coverImage" src="/TSHIRTS.jpeg" />
-        <Header_2 />
-      </main>
+      cart list
+      {/* here I use cartList to get infos from pages
+       */}
       <Footer />
-
       <style jsx>{`
         .container {
           margin: 0;
@@ -126,7 +118,6 @@ export default function men() {
           padding: 10px 0;
         }
       `}</style>
-
       <style jsx global>{`
         html,
         body {

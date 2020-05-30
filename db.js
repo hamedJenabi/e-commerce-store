@@ -1,6 +1,6 @@
 const product = [
   {
-    id: '1',
+    id: '01',
     name: 'lazyShirt',
     type: 'women',
     image: '/TW02navy.jpg',
@@ -10,7 +10,7 @@ const product = [
     price: 20,
   },
   {
-    id: '2',
+    id: '02',
     name: 'sweaty',
     type: 'women',
     image: '/TW02navy.jpg',
@@ -20,7 +20,7 @@ const product = [
     price: 20,
   },
   {
-    id: '3',
+    id: '03',
     name: 'bigApple',
     type: 'women',
     image: '/TW02navy.jpg',
@@ -30,7 +30,7 @@ const product = [
     price: 20,
   },
   {
-    id: '4',
+    id: '04',
     name: 'BluesIdiom',
     type: 'women',
     image: '/TW02navy.jpg',
@@ -40,7 +40,7 @@ const product = [
     price: 20,
   },
   {
-    id: '5',
+    id: '05',
     name: 'BluesTypes',
     type: 'women',
     image: '/TW02navy.jpg',
@@ -50,7 +50,7 @@ const product = [
     price: 20,
   },
   {
-    id: '6',
+    id: '06',
     name: 'BluesTypes',
     type: 'women',
     image: '/TW02navy.jpg',
@@ -60,7 +60,7 @@ const product = [
     price: 20,
   },
   {
-    id: '7',
+    id: '07',
     name: 'BluesTypes',
     type: 'women',
     image: '/TW02navy.jpg',
@@ -71,7 +71,7 @@ const product = [
   },
 
   {
-    id: '1',
+    id: '08',
     name: 'lazyShirt',
     type: 'men',
     image: '/TW02navy.jpg',
@@ -81,7 +81,7 @@ const product = [
     price: 20,
   },
   {
-    id: '2',
+    id: '09',
     name: 'sweaty',
     type: 'men',
     image: '/TW02navy.jpg',
@@ -91,7 +91,7 @@ const product = [
     price: 20,
   },
   {
-    id: '3',
+    id: '10',
     name: 'bigApple',
     type: 'men',
     image: '/TW02navy.jpg',
@@ -101,7 +101,7 @@ const product = [
     price: 20,
   },
   {
-    id: '4',
+    id: '11',
     name: 'BluesIdiom',
     type: 'men',
     image: '/TW02navy.jpg',
@@ -111,7 +111,7 @@ const product = [
     price: 20,
   },
   {
-    id: '5',
+    id: '12',
     name: 'BluesTypes',
     type: 'men',
     image: '/TW02navy.jpg',
@@ -121,7 +121,7 @@ const product = [
     price: 20,
   },
   {
-    id: '1',
+    id: '13',
     name: 'lazyShirt',
     type: 'uniSex',
     image: '/TW02navy.jpg',
@@ -132,7 +132,7 @@ const product = [
     price: 20,
   },
   {
-    id: '2',
+    id: '14',
     name: 'sweaty',
     type: 'uniSex',
     image: '/TW02navy.jpg',
@@ -142,7 +142,7 @@ const product = [
     price: 20,
   },
   {
-    id: '3',
+    id: '15',
     name: 'bigApple',
     type: 'uniSex',
     image: '/TW02navy.jpg',
@@ -152,7 +152,7 @@ const product = [
     price: 20,
   },
   {
-    id: '4',
+    id: '16',
     name: 'BluesIdiom',
     type: 'uniSex',
     image: '/TW02navy.jpg',
@@ -162,7 +162,7 @@ const product = [
     price: 20,
   },
   {
-    id: '5',
+    id: '17',
     name: 'BluesTypes',
     type: 'uniSex',
     image: '/TW02navy.jpg',

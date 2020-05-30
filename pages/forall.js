@@ -1,13 +1,24 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import { getProduct } from '../db.js';
+import { useState } from 'react';
+import { getProduct, getProductById } from '../db.js';
 import Header from '../components/Header';
 import Header_2 from '../components/Header_2';
 import Footer from '../components/Footer';
-
+import CartButton from '../components/CartButton';
 const uniSexItems = getProduct();
 
 export default function uniSex() {
+  const [cartList, setCartList] = useState([]);
+
+  /******** addToCart *******/
+
+  function addToCart(items) {
+    const newItem = items;
+    setCartList([...cartList, newItem]);
+    console.log(cartList);
+  }
+
   return (
     <div className="container">
       <Head>
@@ -36,33 +47,60 @@ export default function uniSex() {
           <div className="products">
             {uniSexItems
               .filter((type) => type.type === 'uniSex')
-              .map((items) => {
+              .map((items, id) => {
                 return (
-                  <Link href="/products/[items]" as={'/products/' + items.id}>
-                    <a>
-                      <div>
-                        <img className="image" src={items.image} />
-
-                        <div className=" productInfos">
-                          <div>My name is: {items.name}</div>
-                          <div>
-                            I am availabe in{' '}
-                            {items.size.map((size) => {
-                              return size + '.';
-                            })}
-                          </div>
-                          <div>I am {items.color}</div>
-                          <div>My price is: €{items.price}</div>
-                          <div className="buttonSection">
-                            <button className="orderButton">Add to Cart</button>
-                            <button className="orderButton">
-                              Pruduct Details
-                            </button>
-                          </div>
+                  <div value={items}>
+                    <Link href="/products/[items]" as={'/products/' + items.id}>
+                      <a>
+                        <div>
+                          <img className="image" src={items.image} />
                         </div>
+                      </a>
+                    </Link>
+
+                    <div className=" productInfos">
+                      <div className="row_2">
+                        <div>My name is: {items.name}</div>
+                        <div>
+                          I am availabe in{' '}
+                          {items.size.map((size) => {
+                            return size + '.';
+                          })}
+                        </div>
+                        <div>I am {items.color}</div>
+                        <div>My price is: €{items.price}</div>
                       </div>
-                    </a>
-                  </Link>
+                      <div className="buttonSection">
+                        {/* <button
+                          type="button"
+                          className="orderButton"
+                          onClick={() => {
+                            addToCart(items);
+                          }}
+                        >
+                          Add to Cart
+                        </button> */}
+                        <CartButton
+                          cartList={cartList}
+                          setCartList={setCartList}
+                          items={items}
+                          onSubmit={function onSubmit(cartList) {
+                            console.log(cartList);
+                          }}
+                        />
+                        <Link
+                          href="/products/[items]"
+                          as={'/products/' + items.id}
+                        >
+                          <a>
+                            <button className="orderButton" onClick={() => {}}>
+                              Product Details
+                            </button>
+                          </a>
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
                 );
               })}
           </div>
@@ -91,10 +129,10 @@ export default function uniSex() {
           margin-top: 40px;
         }
         .row_2 {
-          display: flex;
-          flex-direction: row;
-          justify-content: center;
-          width: 100%;
+          margin-top: 10px;
+        }
+        .row_2 * + * {
+          margin-top: 10px;
         }
         .coverImage {
           margin: 20px 0;
@@ -117,14 +155,10 @@ export default function uniSex() {
           justify-content: space-around;
         }
         .productInfos {
-          margin: 10px 0 0 10px;
-          display: grid;
-          justify-content: start;
-          height: 100%;
-          height: 100%;
-        }
-        .productInfos * + * {
-          margin-top: 10px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          text-align: center;
         }
 
         .image {
@@ -147,13 +181,15 @@ export default function uniSex() {
           z-index: 2;
         }
         .buttonSection {
-          text-align: center;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-evenly;
         }
         .buttonSection * + * {
           margin: 10px;
         }
         .orderButton {
-          margin-top: 40px;
+          margin-top: 30px;
           background: none;
           color: black;
           border: none;

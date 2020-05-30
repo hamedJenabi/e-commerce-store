@@ -4,7 +4,14 @@ import Link from 'next/link';
 export default function Header() {
   return (
     <div>
-      <header className="cart">📥</header>
+      <div>
+        <header className="cart">
+          <div>
+            {' '}
+            <p>Open you Cart</p>📥{' '}
+          </div>
+        </header>
+      </div>
       <header className="header">
         <Link href="/">
           <a>Home</a>
@@ -75,10 +82,11 @@ export default function Header() {
         }
 
         .cart {
+          margin: 10px 10px;
           display: flex;
           font-size: 1.5em;
           justify-content: flex-end;
-          margin: 10px 20px;
+          margin: 10px 0px;
         }
 
         .subnav .subnavbtn {

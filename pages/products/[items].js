@@ -17,9 +17,6 @@ export default function products(props) {
         <section className="section">
           <div>
             <div>here come other images</div>
-          </div>
-          <div>
-            <div>here come other images</div>
             <img className="image" src={props.product.image}></img>
           </div>
           <div className="row">
@@ -76,7 +73,6 @@ export default function products(props) {
         }
 
         .productInfos {
-          margin: 10px 0 0 10px;
           display: grid;
           justify-content: start;
           height: 100%;
@@ -87,7 +83,6 @@ export default function products(props) {
         }
 
         .image {
-          width: 80%;
           height: auto;
           z-index: 1;
 
@@ -99,7 +94,6 @@ export default function products(props) {
         }
         .image_2 {
           margin: 10px 40px 0 0;
-          width: 300px;
           height: auto;
           z-index: 2;
         }

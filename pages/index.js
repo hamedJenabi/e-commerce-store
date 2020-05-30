@@ -176,7 +176,7 @@ export default function Home() {
           letter-spacing: 3px;
           padding: 0;
           font-size: 45px;
-          font-weight: 300;
+          font-weight: 400;
           text-transform: uppercase;
         }
         h2 {
