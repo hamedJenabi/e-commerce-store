@@ -1,16 +1,10 @@
 import Head from 'next/head';
 import Link from 'next/link';
+import { useState } from 'react';
 import { getProduct } from '../db.js';
 
 function CartButton(props) {
-  // if (typeof window !== 'undefined' && props.cartList) {
-  //   const prevCart = JSON.parse(window.localStorage.getItem('cart'));
-
-  //   window.localStorage.setItem(
-  //     'cart',
-  //     JSON.stringify([props.cartList, ...prevCart]),
-  //   );
-  // }
+  const [cartList, setCartList] = useState([]);
   return (
     <div>
       <button
@@ -18,10 +12,16 @@ function CartButton(props) {
         type="button"
         value="newItem"
         onClick={() => {
-          props.onSubmit(props.cartList);
-          {
-            const newItem = props.items;
-            props.setCartList([...props.cartList, newItem]);
+          if (typeof window !== 'undefined' && props.items.id) {
+            const prevCartList = JSON.parse(
+              window.localStorage.getItem('cartList'),
+            );
+
+            window.localStorage.setItem(
+              'cartList',
+              JSON.stringify([...prevCartList, props.items]),
+            );
+            // console.log('here', props.items.id);
           }
         }}
       >

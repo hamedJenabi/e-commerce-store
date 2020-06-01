@@ -1,28 +1,37 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import { useState } from 'react';
 import { getProduct } from '../db.js';
+import { getProductById } from '../db.js';
+
 import Header from '../components/Header';
 import Header_2 from '../components/Header_2';
 import Footer from '../components/Footer';
 
-const items = getProduct();
-
 export default function cart() {
-  const [cartList, setCartList] = useState([]);
-
+  /****************** geting cartList from LocalStorage *******************/
+  let shopList = [];
+  let index = 1;
+  let message = '';
+  typeof window !== 'undefined'
+    ? (shopList = JSON.parse(window.localStorage.getItem('cartList')))
+    : (message = '');
+  const arrayOfObjects = [
+    { id: '1', name: 'hamed' },
+    { id: '2', name: 'kart' },
+  ];
   return (
     <div className="container">
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header cartList={cartList} setCartList={setCartList} />
+      <Header />
+      {console.log('cart here', shopList[1])}
+      {console.log('obj here', arrayOfObjects[1])}
       cart list
       {/* here I use cartList to get infos from pages
        */}
-      {console.log('cart', cartList)}
-      <div></div>
+      <div> here </div>
       <Footer />
       <style jsx>{`
         .container {

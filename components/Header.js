@@ -3,16 +3,19 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { women } from '../pages/forwomen';
 
-export default function Header(props) {
-  const cartListHeader = props.cartList;
-
+export default function Header() {
+  if (typeof window !== 'undefined') {
+    if (!window.localStorage.cartList) {
+      window.localStorage.cartList = JSON.stringify([]);
+    }
+  }
   return (
     <div>
       <div>
         <header className="cart">
           <div>
             {' '}
-            <p>Shopping Basket: {cartListHeader.length} 📥 </p>
+            <p>Shopping Basket: 📥 </p>
           </div>
         </header>
       </div>

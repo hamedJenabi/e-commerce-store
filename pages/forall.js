@@ -9,15 +9,15 @@ import CartButton from '../components/CartButton';
 const uniSexItems = getProduct();
 
 export default function uniSex() {
-  const [cartList, setCartList] = useState([]);
+  // const [cartList, setCartList] = useState([]);
 
   /******** addToCart *******/
 
-  function addToCart(items) {
-    const newItem = items;
-    setCartList([...cartList, newItem]);
-    console.log(cartList);
-  }
+  // function addToCart(items) {
+  //   const newItem = items;
+  //   setCartList([...cartList, newItem]);
+  //   console.log(cartList);
+  // }
 
   return (
     <div className="container">
@@ -25,7 +25,7 @@ export default function uniSex() {
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header cartList={cartList} setCartList={setCartList} />
+      <Header />
       <main>
         <div className="title">
           <div className="row">
@@ -83,14 +83,7 @@ export default function uniSex() {
                         >
                           Add to Cart
                         </button> */}
-                        <CartButton
-                          cartList={cartList}
-                          setCartList={setCartList}
-                          items={items}
-                          onSubmit={function onSubmit(cartList) {
-                            console.log(cartList);
-                          }}
-                        />
+                        <CartButton items={items} />
                         <Link
                           href="/products/[items]"
                           as={'/products/' + items.id}
