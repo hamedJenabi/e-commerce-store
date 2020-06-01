@@ -19,7 +19,7 @@ export default function men() {
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header />
+      <Header cartList={cartList} setCartList={setCartList} />
       <main>
         <div className="title">
           <div className="row">

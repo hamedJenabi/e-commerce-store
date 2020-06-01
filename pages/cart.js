@@ -1,23 +1,28 @@
 import Head from 'next/head';
 import Link from 'next/link';
+import { useState } from 'react';
 import { getProduct } from '../db.js';
 import Header from '../components/Header';
 import Header_2 from '../components/Header_2';
 import Footer from '../components/Footer';
 
-const menItems = getProduct();
+const items = getProduct();
 
 export default function cart() {
+  const [cartList, setCartList] = useState([]);
+
   return (
     <div className="container">
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header />
+      <Header cartList={cartList} setCartList={setCartList} />
       cart list
       {/* here I use cartList to get infos from pages
        */}
+      {console.log('cart', cartList)}
+      <div></div>
       <Footer />
       <style jsx>{`
         .container {

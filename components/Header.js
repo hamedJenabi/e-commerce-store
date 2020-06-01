@@ -1,14 +1,18 @@
 import Head from 'next/head';
 import Link from 'next/link';
+import { useState } from 'react';
+import { women } from '../pages/forwomen';
 
-export default function Header() {
+export default function Header(props) {
+  const cartListHeader = props.cartList;
+
   return (
     <div>
       <div>
         <header className="cart">
           <div>
             {' '}
-            <p>Open you Cart</p>📥{' '}
+            <p>Shopping Basket: {cartListHeader.length} 📥 </p>
           </div>
         </header>
       </div>
@@ -86,7 +90,7 @@ export default function Header() {
           display: flex;
           font-size: 1.5em;
           justify-content: flex-end;
-          margin: 10px 0px;
+          margin: 10px 20px;
         }
 
         .subnav .subnavbtn {

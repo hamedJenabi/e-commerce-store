@@ -3,6 +3,14 @@ import Link from 'next/link';
 import { getProduct } from '../db.js';
 
 function CartButton(props) {
+  // if (typeof window !== 'undefined' && props.cartList) {
+  //   const prevCart = JSON.parse(window.localStorage.getItem('cart'));
+
+  //   window.localStorage.setItem(
+  //     'cart',
+  //     JSON.stringify([props.cartList, ...prevCart]),
+  //   );
+  // }
   return (
     <div>
       <button

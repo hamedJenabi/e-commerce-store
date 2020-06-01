@@ -25,13 +25,16 @@ export default function uniSex() {
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header />
+      <Header cartList={cartList} setCartList={setCartList} />
       <main>
         <div className="title">
           <div className="row">
             <p>hey there, I'm</p>
             <h1 style={{ fontSize: '70px' }}>COUNT SHIRTY</h1>
           </div>
+          <Link href="/cart">
+            <a>cart</a>
+          </Link>
           <div className="row_2">
             <h4 style={{ marginRight: '-100px' }}>
               from the moment you put me on,

@@ -1,6 +1,5 @@
 import Head from 'next/head';
 import { useState } from 'react';
-
 import Link from 'next/link';
 import { getProduct } from '../db.js';
 import Header from '../components/Header';
@@ -19,7 +18,7 @@ export default function Women() {
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header />
+      <Header cartList={cartList} setCartList={setCartList} />
       <main>
         <div className="title">
           <div className="row">
@@ -44,7 +43,7 @@ export default function Women() {
               .filter((type) => type.type === 'women')
               .map((items) => {
                 return (
-                  <div value={items}>
+                  <div value={items.id}>
                     <Link href="/products/[items]" as={'/products/' + items.id}>
                       <a>
                         <div>
@@ -57,7 +56,7 @@ export default function Women() {
                       <div>
                         I am availabe in{' '}
                         {items.size.map((i) => {
-                          return i + '.';
+                          return i + '. ';
                         })}
                       </div>
                       <div>I am {items.color}</div>
