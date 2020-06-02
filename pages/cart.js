@@ -1,5 +1,7 @@
 import Head from 'next/head';
 import Link from 'next/link';
+import cookies from 'next-cookies';
+import Cookies from 'js-cookie';
 import { getProduct } from '../db.js';
 import { getProductById } from '../db.js';
 
@@ -7,18 +9,19 @@ import Header from '../components/Header';
 import Header_2 from '../components/Header_2';
 import Footer from '../components/Footer';
 
-export default function cart() {
-  /****************** geting cartList from LocalStorage *******************/
-  let shopList = [];
-  let index = 1;
-  let message = '';
-  typeof window !== 'undefined'
-    ? (shopList = JSON.parse(window.localStorage.getItem('cartList')))
-    : (message = '');
-  const arrayOfObjects = [
-    { id: '1', name: 'hamed' },
-    { id: '2', name: 'kart' },
-  ];
+export default function cart(props) {
+  /****************** geting cartList from Cookies *******************/
+  let myCart = [];
+  // let index = 1;
+  // let message = '';
+  // typeof window !== 'undefined'
+  //   ? (shopList = JSON.parse(window.localStorage.getItem('cartList')))
+  //   : (message = '');
+  const lastCookies = Cookies.get('cartList');
+  lastCookies === undefined
+    ? (myCart = [])
+    : (myCart = JSON.parse(lastCookies));
+  console.log('cart', myCart);
   return (
     <div className="container">
       <Head>
@@ -26,12 +29,26 @@ export default function cart() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      {console.log('cart here', shopList[1])}
-      {console.log('obj here', arrayOfObjects[1])}
-      cart list
-      {/* here I use cartList to get infos from pages
-       */}
-      <div> here </div>
+      <main>
+        <div className="title">
+          <p>this is your </p>
+          <h2>Shopping Basket</h2>
+        </div>
+        <section>
+          <div>
+            {myCart.map((product, i) => {
+              return (
+                <div key={product.id} className="cartListing">
+                  <div className="row">
+                    <img className="image" src={product.image} />
+                    <p>{product.name}</p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </section>
+      </main>
       <Footer />
       <style jsx>{`
         .container {
@@ -42,16 +59,27 @@ export default function cart() {
           display: flex;
           flex-direction: column;
           align-items: center;
+          text-align: center;
+        }
+        .cartListing {
+          cursor: pointer;
+          padding: 12px 8px 12px 40px;
+          display: flex;
+          height: 30vh;
+          justify-content: space-between;
+          align-items: center;
+          margin-top: 13px;
+        }
+        .cartListing :hover {
+          transition: 0.3s;
+          box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1),
+            0 4px 6px 0 rgba(0, 0, 0, 0.1);
         }
 
         .row {
           display: flex;
-          flex-direction: column;
-          justify-content: center;
-          width: 50%;
-          text-align: center;
-          height: 20vh;
-          margin-top: 40px;
+          flex-direction: row;
+          justify-content: space-between;
         }
         .coverImage {
           margin: 20px 0;
@@ -86,18 +114,14 @@ export default function cart() {
         }
 
         .image {
-          width: 400px;
+          width: 150px;
           height: auto;
           position: relative;
-          z-index: 1;
           margin-bottom: 1em;
           margin-top: 2em;
           overflow: hidden;
         }
-        .image :hover {
-          transition: 300ms;
-          transform: scale(1.05);
-        }
+
         .image_2 {
           margin: 10px 40px 0 0;
           width: 300px;
@@ -180,4 +204,14 @@ export default function cart() {
       `}</style>
     </div>
   );
+}
+
+export function getServerSideProps(context) {
+  const { cartList } = cookies(context);
+
+  return {
+    props: {
+      ...(cartList ? { cartList: cartList } : undefined),
+    },
+  };
 }

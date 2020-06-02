@@ -2,21 +2,28 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useState } from 'react';
 import { women } from '../pages/forwomen';
+import cookies from 'next-cookies';
+import Cookies from 'js-cookie';
 
-export default function Header() {
-  if (typeof window !== 'undefined') {
-    if (!window.localStorage.cartList) {
-      window.localStorage.cartList = JSON.stringify([]);
-    }
-  }
+export default function Header(props) {
+  // if (typeof window !== 'undefined') {
+  //   if (!window.localStorage.cartList) {
+  //     window.localStorage.cartList = JSON.stringify([]);
+  //   }
+  // }
+  let myCart = [];
+  const lastCookies = Cookies.get('cartList');
+  lastCookies === undefined
+    ? (myCart = [])
+    : (myCart = JSON.parse(lastCookies));
+
   return (
     <div>
       <div>
         <header className="cart">
-          <div>
-            {' '}
-            <p>Shopping Basket: 📥 </p>
-          </div>
+          <p>Shopping Basket:</p>
+          <p style={{ backgroundColor: 'red' }}>{myCart.length}</p>
+          <p> 📥</p>
         </header>
       </div>
       <header className="header">
@@ -89,7 +96,6 @@ export default function Header() {
         }
 
         .cart {
-          margin: 10px 10px;
           display: flex;
           font-size: 1.5em;
           justify-content: flex-end;

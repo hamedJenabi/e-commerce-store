@@ -1,13 +1,11 @@
 import Head from 'next/head';
 import Link from 'next/link';
-
+import cookies from 'next-cookies';
 import Header from '../components/Header';
 import Header_2 from '../components/Header_2';
 import Footer from '../components/Footer';
 
 export default function Home() {
-  
-
   return (
     <div className="container">
       <Head>

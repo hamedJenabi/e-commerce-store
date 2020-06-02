@@ -1,23 +1,16 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import { useState } from 'react';
-import { getProduct, getProductById } from '../db.js';
+import { getProduct } from '../db.js';
 import Header from '../components/Header';
 import Header_2 from '../components/Header_2';
 import Footer from '../components/Footer';
 import CartButton from '../components/CartButton';
+
 const uniSexItems = getProduct();
 
 export default function uniSex() {
-  // const [cartList, setCartList] = useState([]);
-
-  /******** addToCart *******/
-
-  // function addToCart(items) {
-  //   const newItem = items;
-  //   setCartList([...cartList, newItem]);
-  //   console.log(cartList);
-  // }
+  const [cartList, setCartList] = useState([]);
 
   return (
     <div className="container">
@@ -83,7 +76,11 @@ export default function uniSex() {
                         >
                           Add to Cart
                         </button> */}
-                        <CartButton items={items} />
+                        <CartButton
+                          items={items}
+                          cartList={cartList}
+                          setCartList={setCartList}
+                        />
                         <Link
                           href="/products/[items]"
                           as={'/products/' + items.id}
