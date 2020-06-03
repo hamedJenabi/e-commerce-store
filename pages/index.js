@@ -20,10 +20,10 @@ export default function Home() {
             <h1 style={{ fontSize: '70px' }}>COUNT SHIRTY</h1>
           </div>
           <div className="row_2">
-            <h4 style={{ marginRight: '-100px' }}>
+            <h4 style={{ marginRight: '70px' }}>
               from the moment you put me on,
             </h4>
-            <h3 style={{ margin: '30px 0' }}> you'll feel light and cool!</h3>
+            <h3 style={{ marginLeft: '70px' }}> you'll feel light and cool!</h3>
           </div>
         </div>
         <img className="coverImage" src="/TSHIRTS.jpeg" />
@@ -100,8 +100,8 @@ export default function Home() {
         }
         .row_2 {
           display: flex;
-          flex-direction: row;
-          justify-content: center;
+          flex-direction: column;
+          align-items: center;
           width: 100%;
         }
         .section {

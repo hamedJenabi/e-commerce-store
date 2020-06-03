@@ -16,7 +16,6 @@ export default function products(props) {
       <main>
         <section className="section">
           <div>
-            <div>here come other images</div>
             <img className="image" src={props.product.image}></img>
           </div>
           <div className="row">
@@ -84,18 +83,9 @@ export default function products(props) {
 
         .image {
           height: auto;
+          width: 500px;
           z-index: 1;
-
           overflow: hidden;
-        }
-        .image :hover {
-          transition: 300ms;
-          transform: scale(1.05);
-        }
-        .image_2 {
-          margin: 10px 40px 0 0;
-          height: auto;
-          z-index: 2;
         }
         .buttonSection {
           text-align: center;

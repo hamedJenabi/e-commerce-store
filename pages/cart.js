@@ -4,49 +4,154 @@ import cookies from 'next-cookies';
 import Cookies from 'js-cookie';
 import { getProduct } from '../db.js';
 import { getProductById } from '../db.js';
-
 import Header from '../components/Header';
 import Header_2 from '../components/Header_2';
 import Footer from '../components/Footer';
 
 export default function cart(props) {
-  /****************** geting cartList from Cookies *******************/
+  /****************** geting cartList & list from Cookies *******************/
+
   let myCart = [];
-  // let index = 1;
-  // let message = '';
-  // typeof window !== 'undefined'
-  //   ? (shopList = JSON.parse(window.localStorage.getItem('cartList')))
-  //   : (message = '');
+  let idCookies = [];
+  let message = '';
+  let prices = [];
+  let sum = 0;
   const lastCookies = Cookies.get('cartList');
   lastCookies === undefined
     ? (myCart = [])
     : (myCart = JSON.parse(lastCookies));
-  console.log('cart', myCart);
+  //cookieId is down there
+  let cartId = myCart.map((a) => a.id);
+  /****************** get the amount of every item *******************/
+  const amount = cartId.reduce(function (amount, i) {
+    if (!amount[i]) {
+      amount[i] = 1;
+    } else {
+      amount[i] = amount[i] + 1;
+    }
+    return amount;
+  }, {});
+  if (myCart.length === 0) {
+    message = 'is empty';
+  }
+  /****************** delete duplicate from array  *******************/
+  // const uniqueArray = myCart.reduce(function (accumulator, currentValue, id) {
+  //   if (accumulator.indexOf(currentValue.id) === -1) {
+  //     accumulator.push(currentValue.id);
+  //   }
+  //   return accumulator;
+  // }, []);
+  // I have to find a better way
+
+  function removeDuplicates(originalArray, prop) {
+    const newArray = [];
+    const lookupObject = {};
+
+    for (var i in originalArray) {
+      lookupObject[originalArray[i][prop]] = originalArray[i];
+    }
+
+    for (i in lookupObject) {
+      newArray.push(lookupObject[i]);
+    }
+    return newArray;
+  }
+
+  let uniqueArray = removeDuplicates(myCart, 'id');
+
+  /****************** delete items from list  *******************/
+
+  const removeItem = (index) => {
+    uniqueArray.splice(index, 1);
+    Cookies.set('cartList', uniqueArray);
+    Cookies.set('list', idCookies);
+    location.reload();
+  };
+  /****************** add to item  *******************/
+
+  const addToItem = (index) => {
+    myCart.push(index);
+    Cookies.set('cartList', myCart);
+    location.reload();
+  };
+  /****************** reduce the amount to item  *******************/
+
+  const reduceItem = (index) => {
+    let i = myCart.indexOf(index);
+    if (i !== -1) myCart.splice(i, 1);
+    Cookies.set('cartList', myCart);
+    location.reload();
+  };
+
+  /****************** return *******************/
+
   return (
-    <div className="container">
+    <div>
       <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>Count Shirty</title>
+        <link rel="icon" href="/logo.png" />
       </Head>
       <Header />
       <main>
         <div className="title">
-          <p>this is your </p>
-          <h2>Shopping Basket</h2>
+          <p>Your</p>
+          <h2>Shopping Basket {message}</h2>
         </div>
         <section>
+          <div className="products">
+            <p>Product Image</p>
+            <p>Product Name</p>
+            <p>Amount</p>
+            <p>Price</p>
+          </div>
+
           <div>
-            {myCart.map((product, i) => {
+            {uniqueArray.map((product, i) => {
+              prices.push(amount[product.id] * product.price);
+              sum = prices.reduce(
+                (accumulator, currentValue) => accumulator + currentValue,
+              );
+
               return (
-                <div key={product.id} className="cartListing">
-                  <div className="row">
+                <div key={i}>
+                  <div className="cartList">
                     <img className="image" src={product.image} />
+
                     <p>{product.name}</p>
+                    <div style={{ display: 'flex' }}>
+                      <button
+                        onClick={() => {
+                          reduceItem(product);
+                        }}
+                      >
+                        -
+                      </button>
+                      <p>{amount[product.id]}</p>
+                      <button
+                        onClick={() => {
+                          addToItem(product);
+                        }}
+                      >
+                        +
+                      </button>
+                    </div>
+                    <p>{prices[i]}</p>
+                    <button
+                      className="buttonRight"
+                      onClick={() => {
+                        removeItem(i);
+                      }}
+                    >
+                      {'❌'}
+                    </button>
                   </div>
                 </div>
               );
             })}
           </div>
+        </section>
+        <section className="total">
+          <h4 style={{ marginLeft: '100px' }}>Total price: </h4> <h4>{sum}</h4>
         </section>
       </main>
       <Footer />
@@ -61,56 +166,37 @@ export default function cart(props) {
           align-items: center;
           text-align: center;
         }
-        .cartListing {
-          cursor: pointer;
-          padding: 12px 8px 12px 40px;
+        .cartList {
+          background: #eee;
           display: flex;
-          height: 30vh;
-          justify-content: space-between;
+          border-radius: 8px;
+          justify-content: space-around;
           align-items: center;
-          margin-top: 13px;
-        }
-        .cartListing :hover {
-          transition: 0.3s;
-          box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1),
-            0 4px 6px 0 rgba(0, 0, 0, 0.1);
+          margin: 20px 0;
+          box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1),
+            0 10px 20px 0 rgba(0, 0, 0, 0.1);
         }
 
-        .row {
-          display: flex;
-          flex-direction: row;
-          justify-content: space-between;
-        }
         .coverImage {
           margin: 20px 0;
           width: 100%;
         }
         .section {
-          max-width: 100%;
-          overflow: hidden;
-          margin: 40px;
           display: flex;
-          flex-direction: column;
-          align-content: center;
-
-          height: 100%;
+          margin: 40px 0;
+          justify-content: space-evenly;
+        }
+        .total {
+          display: flex;
+          margin: 40px 0 0 40px;
         }
         .products {
+          margin: 40px 0 40px 40px;
           display: flex;
-          flex-wrap: wrap;
-          height: 100%;
+          flex-direction: row;
           justify-content: space-around;
-        }
-        .productInfos {
-          margin: 10px 0 0 10px;
-          display: grid;
-          justify-content: start;
-
           height: 100%;
-          height: 100%;
-        }
-        .productInfos * + * {
-          margin-top: 10px;
+          width: calc(100% - 20%);
         }
 
         .image {
@@ -148,6 +234,22 @@ export default function cart(props) {
           color: #fff;
           cursor: pointer;
           background-color: rgb(77, 141, 198);
+        }
+        .deleteButton {
+          background-color: #eee;
+          color: white;
+          padding: 10px;
+          font-size: 14px;
+          border-radius: 8px;
+          justify-items: right;
+        }
+        .deleteButton :hover {
+          transition: 0.3s;
+
+          background-color: lightgray;
+          border-color: rgba(175, 47, 47, 0.1);
+          box-shadow: 0px 2px 2px lightgray;
+          color: white;
         }
         a {
           color: black;
@@ -215,3 +317,14 @@ export function getServerSideProps(context) {
     },
   };
 }
+
+// let index = 1;
+// let message = '';
+// typeof window !== 'undefined'
+//   ? (shopList = JSON.parse(window.localStorage.getItem('cartList')))
+//   : (message = '');
+
+// const lastCookiesId = Cookies.get('list');
+// lastCookiesId === undefined
+//   ? (idCookies = [])
+//   : (idCookies = JSON.parse(lastCookiesId));

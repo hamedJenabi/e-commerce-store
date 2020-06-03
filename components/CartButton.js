@@ -11,21 +11,24 @@ function CartButton(props) {
   // } else {
   //   const lastCookies = props.cartList;
   // }
+
+  const makeCookies = () => {
+    let newCookies = [];
+    const lastCookies = Cookies.get('cartList');
+    lastCookies === undefined
+      ? (newCookies = [props.items])
+      : (newCookies = [...JSON.parse(lastCookies), props.items]);
+    props.setCartList(newCookies.length);
+    Cookies.set('cartList', newCookies);
+  };
+
   return (
     <div>
       <button
         className="orderButton"
         type="button"
         value="newItem"
-        onClick={() => {
-          let newCookies = [];
-          const lastCookies = Cookies.get('cartList');
-          lastCookies === undefined
-            ? (newCookies = [props.items])
-            : (newCookies = [...JSON.parse(lastCookies), props.items]);
-          props.setCartList(newCookies.length);
-          Cookies.set('cartList', newCookies);
-        }}
+        onClick={() => makeCookies()}
       >
         Add to cart
       </button>
@@ -78,3 +81,10 @@ export function getServerSideProps(context) {
 //     JSON.stringify([...prevCartList, props.items]),
 //   );
 // console.log('here', props.items);}
+
+// let newCookiesId = [];
+// const lastCookiesId = Cookies.get('list');
+// lastCookiesId === undefined
+//   ? (newCookiesId = [props.items.id])
+//   : (newCookiesId = [...JSON.parse(lastCookiesId), props.items.id]);
+// Cookies.set('list', newCookiesId);

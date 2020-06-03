@@ -21,9 +21,15 @@ export default function Header(props) {
     <div>
       <div>
         <header className="cart">
-          <p>Shopping Basket:</p>
-          <p style={{ backgroundColor: 'red' }}>{myCart.length}</p>
-          <p> 📥</p>
+          <Link href="/cart">
+            <a>
+              <div className="row">
+                <p>Shopping Basket:</p>{' '}
+                <p style={{ backgroundColor: 'blue' }}>{myCart.length}</p>{' '}
+                <p> 📥</p>
+              </div>
+            </a>
+          </Link>
         </header>
       </div>
       <header className="header">
@@ -76,6 +82,18 @@ export default function Header(props) {
           transition: 400ms;
           cursor: pointer;
         }
+        .row {
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          width: 100%;
+          text-align: center;
+        }
+        p {
+          width: 500px;
+          padding: 0;
+          margin: 10;
+        }
 
         a {
           color: black;
@@ -90,14 +108,12 @@ export default function Header(props) {
         }
         a:hover {
           transition: 400ms;
-          font-size: 1.1em;
-          color: #ed1212;
+          color: #8f5d5d;
           cursor: pointer;
         }
 
         .cart {
           display: flex;
-          font-size: 1.5em;
           justify-content: flex-end;
           margin: 10px 20px;
         }
