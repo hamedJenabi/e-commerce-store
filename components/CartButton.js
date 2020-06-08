@@ -2,23 +2,14 @@ import Head from 'next/head';
 import Link from 'next/link';
 import nextCookies from 'next-cookies';
 import Cookies from 'js-cookie';
-import { useState } from 'react';
-import { getProduct } from '../db.js';
 
 function CartButton(props) {
-  // if (props.cartList === undefined) {
-  //   let lastCookies = [];
-  // } else {
-  //   const lastCookies = props.cartList;
-  // }
-
   const makeCookies = () => {
     let newCookies = [];
     const lastCookies = Cookies.get('cartList');
     lastCookies === undefined
       ? (newCookies = [props.items])
       : (newCookies = [...JSON.parse(lastCookies), props.items]);
-    props.setCartList(newCookies.length);
     Cookies.set('cartList', newCookies);
   };
 
@@ -26,9 +17,12 @@ function CartButton(props) {
     <div>
       <button
         className="orderButton"
+        data-cy={'add-toCart'}
         type="button"
         value="newItem"
-        onClick={() => makeCookies()}
+        onClick={() => {
+          makeCookies();
+        }}
       >
         Add to cart
       </button>
@@ -60,17 +54,6 @@ function CartButton(props) {
   );
 }
 export default CartButton;
-
-export function getServerSideProps(context) {
-  const { cartList, list } = nextCookies(context);
-
-  return {
-    props: {
-      ...(cartList ? { cartList: cartList } : undefined),
-      ...(list ? { list: list } : undefined),
-    },
-  };
-}
 
 // if (typeof window !== 'undefined' && props.items.id) {
 //   const prevCartList = JSON.parse(

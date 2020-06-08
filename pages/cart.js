@@ -1,25 +1,21 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import cookies from 'next-cookies';
+import nextCookies from 'next-cookies';
 import Cookies from 'js-cookie';
-import { getProduct } from '../db.js';
-import { getProductById } from '../db.js';
 import Header from '../components/Header';
 import Header_2 from '../components/Header_2';
 import Footer from '../components/Footer';
 
 export default function cart(props) {
-  /****************** geting cartList & list from Cookies *******************/
-
+  /****************** getting cartList & list from Cookies *******************/
   let myCart = [];
   let idCookies = [];
   let message = '';
   let prices = [];
   let sum = 0;
-  const lastCookies = Cookies.get('cartList');
-  lastCookies === undefined
-    ? (myCart = [])
-    : (myCart = JSON.parse(lastCookies));
+
+  const lastCookies = props.cartList;
+  lastCookies === undefined ? (myCart = []) : (myCart = lastCookies);
   //cookieId is down there
   let cartId = myCart.map((a) => a.id);
   /****************** get the amount of every item *******************/
@@ -62,9 +58,8 @@ export default function cart(props) {
   /****************** delete items from list  *******************/
 
   const removeItem = (index) => {
-    uniqueArray.splice(index, 1);
-    Cookies.set('cartList', uniqueArray);
-    Cookies.set('list', idCookies);
+    myCart.splice(index, 1);
+    Cookies.set('cartList', myCart);
     location.reload();
   };
   /****************** add to item  *******************/
@@ -74,7 +69,7 @@ export default function cart(props) {
     Cookies.set('cartList', myCart);
     location.reload();
   };
-  /****************** reduce the amount to item  *******************/
+  /****************** reduce the amount of item  *******************/
 
   const reduceItem = (index) => {
     let i = myCart.indexOf(index);
@@ -82,16 +77,11 @@ export default function cart(props) {
     Cookies.set('cartList', myCart);
     location.reload();
   };
-
   /****************** return *******************/
 
   return (
     <div>
-      <Head>
-        <title>Count Shirty</title>
-        <link rel="icon" href="/logo.png" />
-      </Head>
-      <Header />
+      <Header list={props.cartList} />
       <main>
         <div className="title">
           <p>Your</p>
@@ -101,8 +91,9 @@ export default function cart(props) {
           <div className="products">
             <p>Product Image</p>
             <p>Product Name</p>
-            <p>Amount</p>
+            <p>Quantity</p>
             <p>Price</p>
+            <p>Remove Item</p>
           </div>
 
           <div>
@@ -115,9 +106,9 @@ export default function cart(props) {
               return (
                 <div key={i}>
                   <div className="cartList">
-                    <img className="image" src={product.image} />
+                    <img className="image" src={'/' + product.image} />
 
-                    <p>{product.name}</p>
+                    <p style={{ width: '100px' }}>{product.name}</p>
                     <div style={{ display: 'flex' }}>
                       <button
                         onClick={() => {
@@ -135,7 +126,7 @@ export default function cart(props) {
                         +
                       </button>
                     </div>
-                    <p>{prices[i]}</p>
+                    <p>€{prices[i]}</p>
                     <button
                       className="buttonRight"
                       onClick={() => {
@@ -151,7 +142,7 @@ export default function cart(props) {
           </div>
         </section>
         <section className="total">
-          <h4 style={{ marginLeft: '100px' }}>Total price: </h4> <h4>{sum}</h4>
+          <h4>Total price: </h4> <h4>€{sum}</h4>
         </section>
       </main>
       <Footer />
@@ -167,14 +158,11 @@ export default function cart(props) {
           text-align: center;
         }
         .cartList {
-          background: #eee;
           display: flex;
-          border-radius: 8px;
           justify-content: space-around;
           align-items: center;
-          margin: 20px 0;
-          box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1),
-            0 10px 20px 0 rgba(0, 0, 0, 0.1);
+          text-align: center;
+          border-bottom: 1px solid black;
         }
 
         .coverImage {
@@ -188,22 +176,25 @@ export default function cart(props) {
         }
         .total {
           display: flex;
-          margin: 40px 0 0 40px;
+          justify-content: flex-end;
+          margin: 40px 100px 40px 0;
         }
         .products {
-          margin: 40px 0 40px 40px;
+          margin-top: 40px;
           display: flex;
-          flex-direction: row;
           justify-content: space-around;
-          height: 100%;
-          width: calc(100% - 20%);
+
+          border-bottom: 1px solid black;
+        }
+        .products p {
+          margin-left: 60px;
         }
 
         .image {
           width: 150px;
           height: auto;
           position: relative;
-          margin-bottom: 1em;
+          margin-bottom: 2em;
           margin-top: 2em;
           overflow: hidden;
         }
@@ -309,7 +300,7 @@ export default function cart(props) {
 }
 
 export function getServerSideProps(context) {
-  const { cartList } = cookies(context);
+  const { cartList } = nextCookies(context);
 
   return {
     props: {
@@ -328,3 +319,4 @@ export function getServerSideProps(context) {
 // lastCookiesId === undefined
 //   ? (idCookies = [])
 //   : (idCookies = JSON.parse(lastCookiesId));
+// const lastCookiesId = Cookies.get('list')

@@ -1,29 +1,27 @@
 import Head from 'next/head';
 import { useState } from 'react';
 import Link from 'next/link';
-import { getProduct } from '../db.js';
+// import { getProduct } from '../db.js';
+import nextCookies from 'next-cookies';
 import Header from '../components/Header';
 import Header_2 from '../components/Header_2';
 import Footer from '../components/Footer';
 import CartButton from '../components/CartButton';
 
-const womenItems = getProduct();
+export default function Women(props) {
+  const womenItems = props.products;
 
-export default function Women() {
   const [cartList, setCartList] = useState([]);
 
   return (
     <div className="container">
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <Header cartList={cartList} setCartList={setCartList} />
+      <Header list={props.cartList} />
       <main>
         <div className="title">
           <div className="row">
             <p>hey there, I'm</p>
             <h1 style={{ fontSize: '70px' }}>COUNT SHIRTY</h1>
+            <h2 style={{ marginBottom: '30px' }}>for women</h2>
           </div>
           <div className="row_2">
             <h4 style={{ marginRight: '-100px' }}>
@@ -41,9 +39,9 @@ export default function Women() {
           <div className="products">
             {womenItems
               .filter((type) => type.type === 'women')
-              .map((items) => {
+              .map((items, i) => {
                 return (
-                  <div value={items.id}>
+                  <div value={items.id} key={i}>
                     <Link href="/products/[items]" as={'/products/' + items.id}>
                       <a>
                         <div>
@@ -54,22 +52,15 @@ export default function Women() {
                     <div className=" productInfos">
                       <div>My name is: {items.name}</div>
                       <div>
-                        I am availabe in{' '}
-                        {items.size.map((i) => {
+                        I am availabe in: {items.size}
+                        {/* {items.size.map((i) => {
                           return i + '. ';
-                        })}
+                        })} */}
                       </div>
                       <div>I am {items.color}</div>
                       <div>My price is: €{items.price}</div>
                       <div className="buttonSection">
-                        <CartButton
-                          cartList={cartList}
-                          setCartList={setCartList}
-                          items={items}
-                          onSubmit={function onSubmit(cartList) {
-                            console.log(cartList);
-                          }}
-                        />
+                        <CartButton items={items} />
                         <Link
                           href="/products/[items]"
                           as={'/products/' + items.id}
@@ -247,4 +238,29 @@ export default function Women() {
       `}</style>
     </div>
   );
+}
+
+// export function getServerSideProps(context) {
+//   const { cartList } = nextCookies(context);
+
+//   return {
+//     props: {
+//       ...(cartList ? { cartList: cartList } : undefined),
+//     },
+//   };
+// }
+
+export async function getServerSideProps(context) {
+  const { cartList } = nextCookies(context);
+
+  const { getProducts } = await import('../db.js');
+
+  const products = await getProducts();
+
+  return {
+    props: {
+      products,
+      ...(cartList ? { cartList: cartList } : undefined),
+    },
+  };
 }

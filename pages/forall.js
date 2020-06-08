@@ -1,38 +1,32 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import { useState } from 'react';
-import { getProduct } from '../db.js';
+import nextCookies from 'next-cookies';
+import Cookies from 'js-cookie';
 import Header from '../components/Header';
 import Header_2 from '../components/Header_2';
 import Footer from '../components/Footer';
 import CartButton from '../components/CartButton';
 
-const uniSexItems = getProduct();
-
-export default function uniSex() {
-  const [cartList, setCartList] = useState([]);
+export default function uniSex(props) {
+  const uniSexItems = props.products;
 
   return (
     <div className="container">
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <Header />
+      <Header list={props.cartList} />
       <main>
         <div className="title">
           <div className="row">
             <p>hey there, I'm</p>
-            <h1 style={{ fontSize: '70px' }}>COUNT SHIRTY</h1>
+            <h2>unisex</h2>
+            <h1 style={{ fontSize: '4em' }}>COUNT SHIRTY</h1>
           </div>
-          <Link href="/cart">
-            <a>cart</a>
-          </Link>
+
           <div className="row_2">
-            <h4 style={{ marginRight: '-100px' }}>
+            <h4 style={{ marginRight: '2em' }}>
               from the moment you put me on,
             </h4>
-            <h3 style={{ margin: '30px 0' }}> you'll feel light and cool!</h3>
+            <h3 style={{ marginLeft: '2em' }}> you'll feel light and cool!</h3>
           </div>
         </div>
         <img className="coverImage" src="/TSHIRTS.jpeg" />
@@ -45,7 +39,7 @@ export default function uniSex() {
               .filter((type) => type.type === 'uniSex')
               .map((items, id) => {
                 return (
-                  <div value={items}>
+                  <div value={items} key={id}>
                     <Link href="/products/[items]" as={'/products/' + items.id}>
                       <a>
                         <div>
@@ -59,9 +53,9 @@ export default function uniSex() {
                         <div>My name is: {items.name}</div>
                         <div>
                           I am availabe in{' '}
-                          {items.size.map((size) => {
+                          {/* {items.size.map((size) => {
                             return size + '.';
-                          })}
+                          })} */}
                         </div>
                         <div>I am {items.color}</div>
                         <div>My price is: €{items.price}</div>
@@ -76,11 +70,7 @@ export default function uniSex() {
                         >
                           Add to Cart
                         </button> */}
-                        <CartButton
-                          items={items}
-                          cartList={cartList}
-                          setCartList={setCartList}
-                        />
+                        <CartButton items={items} />
                         <Link
                           href="/products/[items]"
                           as={'/products/' + items.id}
@@ -118,15 +108,15 @@ export default function uniSex() {
           justify-content: center;
           width: 50%;
           text-align: center;
-          height: 20vh;
-          margin-top: 40px;
+          margin: 40px 0;
         }
         .row_2 {
-          margin-top: 10px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          width: 100%;
         }
-        .row_2 * + * {
-          margin-top: 10px;
-        }
+
         .coverImage {
           margin: 20px 0;
           width: 100%;
@@ -223,39 +213,55 @@ export default function uniSex() {
           margin: 0;
           letter-spacing: 3px;
           padding: 0;
-          font-size: 45px;
+          font-size: 2em;
           font-weight: 300;
           text-transform: uppercase;
         }
         h2 {
           margin: 0;
           padding: 0;
-          font-size: 40px;
+          font-size: 1.7em;
           font-weight: 300;
           letter-spacing: 2px;
         }
         h3 {
           margin: 0;
           padding: 0;
-          font-size: 30px;
+          font-size: 1.4em;
           font-weight: 300;
           letter-spacing: 2px;
         }
         h4 {
           margin: 0;
           padding: 0;
-          font-size: 26px;
+          font-size: 1.2em;
           font-weight: 300;
           letter-spacing: 2px;
         }
         p {
           margin: 4px;
           padding: 0;
-          font-size: 16px;
+          font-size: 1em;
           font-weight: 300;
           letter-spacing: 2px;
         }
       `}</style>
     </div>
   );
+}
+
+/************** ServerSide  ***********/
+export async function getServerSideProps(context) {
+  const { cartList } = nextCookies(context);
+
+  const { getProducts } = await import('../db.js');
+
+  const products = await getProducts();
+
+  return {
+    props: {
+      ...(cartList ? { cartList: cartList } : undefined),
+      products,
+    },
+  };
 }

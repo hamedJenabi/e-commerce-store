@@ -2,7 +2,8 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
-import { getProductById } from '../../db.js';
+// import { getProductById } from '../../db.js';
+import CartButton from '../../components/CartButton';
 
 export default function products(props) {
   if (!props.product) return <div>product not found!</div>;
@@ -16,21 +17,21 @@ export default function products(props) {
       <main>
         <section className="section">
           <div>
-            <img className="image" src={props.product.image}></img>
+            <img className="image" src={'/' + props.product[0].image}></img>
           </div>
           <div className="row">
-            <h1>{props.product.name}</h1>
+            <h1>{props.product[0].name}</h1>
             <h3>Size:</h3>
             <p>
-              {props.product.size.map((size) => {
+              {/* {props.product.size.map((size) => {
                 return size + '.';
-              })}
+              })} */}
             </p>
             <p>COMPOSITION 100% cotton - </p>
             <p>Organic Combed Ring Spun *Sport Grey:</p>
             <p> made with 90% organically grown cotton. WEIGHT 140 g/m²</p>
             <div>
-              <button className="orderButton">Add to Cart</button>
+              <CartButton items={props.product[0]} />
             </div>
           </div>
         </section>
@@ -171,8 +172,10 @@ export default function products(props) {
     </div>
   );
 }
-export function getServerSideProps(context) {
-  const product = getProductById(context.params.items);
+export async function getServerSideProps(context) {
+  const { getProductById } = await import('../../db.js');
+
+  const product = await getProductById(context.query.items);
 
   if (product === undefined) {
     return { props: {} };
@@ -183,3 +186,15 @@ export function getServerSideProps(context) {
     },
   };
 }
+
+//   const product = getProductById(context.params.items);
+
+//   if (product === undefined) {
+//     return { props: {} };
+//   }
+//   return {
+//     props: {
+//       product,
+//     },
+//   };
+// }

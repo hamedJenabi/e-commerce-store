@@ -1,8 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import { useState } from 'react';
-import { women } from '../pages/forwomen';
-import cookies from 'next-cookies';
+import nextCookies from 'next-cookies';
 import Cookies from 'js-cookie';
 
 export default function Header(props) {
@@ -12,11 +10,8 @@ export default function Header(props) {
   //   }
   // }
   let myCart = [];
-  const lastCookies = Cookies.get('cartList');
-  lastCookies === undefined
-    ? (myCart = [])
-    : (myCart = JSON.parse(lastCookies));
-
+  const lastCookies = props.list;
+  lastCookies === undefined ? (myCart = []) : (myCart = lastCookies);
   return (
     <div>
       <div>
@@ -24,9 +19,17 @@ export default function Header(props) {
           <Link href="/cart">
             <a>
               <div className="row">
-                <p>Shopping Basket:</p>{' '}
-                <p style={{ backgroundColor: 'blue' }}>{myCart.length}</p>{' '}
-                <p> 📥</p>
+                <p style={{ width: '100px', alignItems: 'center' }}>
+                  Your Basket:
+                </p>
+                <div>
+                  <p className="notification">{myCart.length}</p>
+                  <img
+                    className="cartLogo"
+                    src="/trolley.svg"
+                    alt="cart logo"
+                  />
+                </div>
               </div>
             </a>
           </Link>
@@ -90,9 +93,9 @@ export default function Header(props) {
           text-align: center;
         }
         p {
-          width: 500px;
           padding: 0;
           margin: 10;
+          height: 1.7em;
         }
 
         a {
@@ -106,9 +109,11 @@ export default function Header(props) {
           position: relative;
           width: 155px;
         }
+
         a:hover {
           transition: 400ms;
-          color: #8f5d5d;
+          text-decoration: underline;
+          color: #1f375b;
           cursor: pointer;
         }
 
@@ -116,8 +121,23 @@ export default function Header(props) {
           display: flex;
           justify-content: flex-end;
           margin: 10px 20px;
+          width: auto;
         }
+        .cartLogo {
+          height: auto;
 
+          width: 40px;
+          z-index: 0;
+          position: relative;
+          overflow: hidden;
+        }
+        .notification {
+          margin: 0px 0 0px 0px;
+          width: 20px;
+          background-color: rgb(185, 165, 206);
+
+          height: 1.2em;
+        }
         .subnav .subnavbtn {
           border: none;
           outline: none;
@@ -136,6 +156,52 @@ export default function Header(props) {
           flex-direction: column;
           height: 110px;
           width: 100px;
+        }
+      `}</style>
+      <style jsx global>{`
+        html,
+        body {
+          display: block;
+          max-width: 100%;
+          margin: 0;
+          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Oxygen,
+            Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+        }
+        h1 {
+          margin: 0;
+          letter-spacing: 3px;
+          padding: 0;
+          font-size: 45px;
+          font-weight: 400;
+          text-transform: uppercase;
+        }
+        h2 {
+          margin: 0;
+          padding: 0;
+          font-size: 40px;
+          font-weight: 300;
+          letter-spacing: 2px;
+        }
+        h3 {
+          margin: 0;
+          padding: 0;
+          font-size: 30px;
+          font-weight: 300;
+          letter-spacing: 2px;
+        }
+        h4 {
+          margin: 0;
+          padding: 0;
+          font-size: 26px;
+          font-weight: 300;
+          letter-spacing: 2px;
+        }
+        p {
+          margin: 4px;
+          padding: 0;
+          font-size: 16px;
+          font-weight: 300;
+          letter-spacing: 2px;
         }
       `}</style>
     </div>

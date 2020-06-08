@@ -1,17 +1,14 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import cookies from 'next-cookies';
+import nextCookies from 'next-cookies';
+
 import Header from '../components/Header';
 import Header_2 from '../components/Header_2';
 import Footer from '../components/Footer';
 
-export default function Home() {
+export default function Home(props) {
   return (
     <div className="container">
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
       <Header />
       <main>
         <div className="title">
@@ -58,8 +55,8 @@ export default function Home() {
               <h3>are</h3>
             </div>
             <div className="row_2">
-              <h3 style={{ margin: '20px -100px 0 0' }}>dance-related</h3>
-              <h3 style={{ margin: '80px 0px 0 50px' }}>plastic-free</h3>
+              <h3 style={{ margin: '0px -100px 0 0' }}>dance-related</h3>
+              <h3 style={{ margin: '0px 0px 0 50px' }}>plastic-free</h3>
             </div>
             <h3 style={{ margin: '20px 100px 0 0' }}> and somehow funny!</h3>
             <button className="orderButton">Our Products</button>
@@ -84,6 +81,7 @@ export default function Home() {
         }
         .title {
           width: 100%;
+          margin-bottom: 1.2em;
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -95,8 +93,7 @@ export default function Home() {
           justify-content: center;
           width: 50%;
           text-align: center;
-          height: 20vh;
-          margin-top: 40px;
+          margin: 40px 0;
         }
         .row_2 {
           display: flex;
@@ -128,7 +125,6 @@ export default function Home() {
         .image_1 {
           width: 300px;
           height: auto;
-          position: relative;
           z-index: 1;
           margin-bottom: 1em;
           margin-top: 2em;
@@ -176,7 +172,7 @@ export default function Home() {
           letter-spacing: 3px;
           padding: 0;
           font-size: 45px;
-          font-weight: 400;
+          font-weight: 300;
           text-transform: uppercase;
         }
         h2 {
@@ -210,4 +206,14 @@ export default function Home() {
       `}</style>
     </div>
   );
+}
+
+export function getServerSideProps(context) {
+  const { cartList } = nextCookies(context);
+
+  return {
+    props: {
+      ...(cartList ? { cartList: cartList } : undefined),
+    },
+  };
 }
