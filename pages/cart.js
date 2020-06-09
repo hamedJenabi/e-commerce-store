@@ -97,7 +97,7 @@ export default function cart(props) {
           </div>
 
           <div>
-            {uniqueArray.map((product, i) => {
+            {removeDuplicates(myCart, 'id').map((product, i) => {
               prices.push(amount[product.id] * product.price);
               sum = prices.reduce(
                 (accumulator, currentValue) => accumulator + currentValue,
@@ -129,6 +129,7 @@ export default function cart(props) {
                     <p>€{prices[i]}</p>
                     <button
                       className="buttonRight"
+                      data-cy={'remove'}
                       onClick={() => {
                         removeItem(i);
                       }}
@@ -142,7 +143,7 @@ export default function cart(props) {
           </div>
         </section>
         <section className="total">
-          <h4>Total price: </h4> <h4>€{sum}</h4>
+          <h4>Total price: </h4> <h4 data-cy={'total'}>€{sum}</h4>
         </section>
       </main>
       <Footer />
