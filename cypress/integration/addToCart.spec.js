@@ -34,11 +34,11 @@ context('AddToCart', () => {
       .should((cookies) => {
         expect(cookies[0]).to.have.property('name', 'cartList');
       });
-    cy.visit('http://localhost:3000/cart');
+    cy.visit('http://localhost:3000/cart-useState');
     cy.get('[data-cy="total"]:contains("€100")');
     cy.get('[data-cy="remove"]').click({ multiple: true });
     cy.reload();
-
+    cy.reload();
     cy.get('[data-cy="total"]:contains("€0")');
   });
 });

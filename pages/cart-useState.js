@@ -1,24 +1,23 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import nextCookies from 'next-cookies';
+import { useState } from 'react';
 import Cookies from 'js-cookie';
 import Header from '../components/Header';
-import Header_2 from '../components/Header_2';
 import Footer from '../components/Footer';
 
 export default function cart(props) {
   /****************** getting cartList & list from Cookies *******************/
-  let myCart = [];
-  let idCookies = [];
+  const [cart, setCart] = useState(props.cartList ?? []);
+
   let message = '';
   let prices = [];
   let sum = 0;
-
-  const lastCookies = props.cartList;
-  lastCookies === undefined ? (myCart = []) : (myCart = lastCookies);
+  // const lastCookies = props.cartList;
+  // lastCookies === undefined ? (myCart = []) : (myCart = lastCookies);
   //cookieId is down there
-
-  let cartId = myCart.map((a) => a.id);
+  //cart is an array with all selected products.
+  const cartId = cart.map((a) => a.id);
   /****************** get the amount of every item *******************/
   const amount = cartId.reduce(function (amount, i) {
     if (!amount[i]) {
@@ -28,16 +27,14 @@ export default function cart(props) {
     }
     return amount;
   }, {});
-  if (myCart.length === 0) {
+
+  // message for an empty basket
+  if (cart.length === 0) {
     message = 'is empty';
   }
+  // useEffect(() => Cookies.set('cartList', cart), []);
+
   /****************** delete duplicate from array  *******************/
-  // const uniqueArray = myCart.reduce(function (accumulator, currentValue, id) {
-  //   if (accumulator.indexOf(currentValue.id) === -1) {
-  //     accumulator.push(currentValue.id);
-  //   }
-  //   return accumulator;
-  // }, []);
   // I have to find a better way
 
   function removeDuplicates(originalArray, prop) {
@@ -54,32 +51,36 @@ export default function cart(props) {
     return newArray;
   }
 
-  let uniqueArray = removeDuplicates(myCart, 'id');
-
-  /****************** delete items from list  *******************/
+  /****************** delete  from list  *******************/
 
   const removeItem = (index) => {
-    myCart.splice(index, 1);
-    Cookies.set('cartList', myCart);
-    location.reload();
+    const newList = [...removeDuplicates(cart, 'id')];
+    if (index !== -1) newList.splice(index, 1);
+    setCart(newList);
+    Cookies.set('cartList', newList);
   };
   /****************** add to item  *******************/
 
   const addToItem = (index) => {
-    myCart.push(index);
-    Cookies.set('cartList', myCart);
-    location.reload();
+    const newList = [...cart, index];
+    console.log('before set', newList);
+    setCart(newList);
+    console.log('after set', cart);
+    Cookies.set('cartList', newList);
   };
+  //***** setting cookies ****/
+
   /****************** reduce the amount of item  *******************/
 
   const reduceItem = (index) => {
-    let i = myCart.indexOf(index);
-    if (i !== -1) myCart.splice(i, 1);
-    Cookies.set('cartList', myCart);
-    location.reload();
+    const newList = [...cart];
+    let i = newList.indexOf(index);
+    newList.splice(i, 1);
+    setCart(newList);
+    Cookies.set('cartList', newList);
   };
-  /****************** return *******************/
 
+  /****************** return *******************/
   return (
     <div>
       <Header list={props.cartList} />
@@ -98,12 +99,14 @@ export default function cart(props) {
           </div>
 
           <div>
-            {removeDuplicates(myCart, 'id').map((product, i) => {
+            {removeDuplicates(cart, 'id').map((product, i) => {
               prices.push(amount[product.id] * product.price);
               sum = prices.reduce(
                 (accumulator, currentValue) => accumulator + currentValue,
               );
-
+              {
+                Cookies.set('totalPrice', sum);
+              }
               return (
                 <div key={i}>
                   <div className="cartList">
@@ -132,7 +135,7 @@ export default function cart(props) {
                       className="buttonRight"
                       data-cy={'remove'}
                       onClick={() => {
-                        removeItem(i);
+                        removeItem(product);
                       }}
                     >
                       {'❌'}
@@ -145,6 +148,7 @@ export default function cart(props) {
         </section>
         <section className="total">
           <h4>Total price: </h4> <h4 data-cy={'total'}>€{sum}</h4>
+          <button className="proceedButton">Proceed to Checkout</button>
         </section>
       </main>
       <Footer />
@@ -158,6 +162,26 @@ export default function cart(props) {
           flex-direction: column;
           align-items: center;
           text-align: center;
+        }
+        .proceedButton {
+          background: none;
+          color: black;
+          border: none;
+          text-transform: uppercase;
+          text-decoration: none;
+          letter-spacing: 0.15em;
+          text-align: center;
+          display: inline-block;
+          position: relative;
+          width: 250px;
+          height: 40px;
+          border: 1px solid #c8d8d4cd;
+        }
+        .proceedButton :hover {
+          transition: 400ms;
+          color: #fff;
+          cursor: pointer;
+          background-color: rgb(77, 141, 198);
         }
         .cartList {
           display: flex;
@@ -178,8 +202,12 @@ export default function cart(props) {
         }
         .total {
           display: flex;
-          justify-content: flex-end;
-          margin: 40px 100px 40px 0;
+          align-items: baseline;
+          float: right;
+          margin: 40px 0px;
+        }
+        .total * + * {
+          margin: 20px;
         }
         .products {
           margin-top: 40px;
@@ -310,15 +338,3 @@ export function getServerSideProps(context) {
     },
   };
 }
-
-// let index = 1;
-// let message = '';
-// typeof window !== 'undefined'
-//   ? (shopList = JSON.parse(window.localStorage.getItem('cartList')))
-//   : (message = '');
-
-// const lastCookiesId = Cookies.get('list');
-// lastCookiesId === undefined
-//   ? (idCookies = [])
-//   : (idCookies = JSON.parse(lastCookiesId));
-// const lastCookiesId = Cookies.get('list')

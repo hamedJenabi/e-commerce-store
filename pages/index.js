@@ -9,7 +9,7 @@ import Footer from '../components/Footer';
 export default function Home(props) {
   return (
     <div className="container">
-      <Header />
+      <Header list={props.cartList} />
       <main>
         <div className="title">
           <div className="row">

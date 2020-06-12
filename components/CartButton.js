@@ -1,6 +1,5 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import nextCookies from 'next-cookies';
 import Cookies from 'js-cookie';
 
 function CartButton(props) {

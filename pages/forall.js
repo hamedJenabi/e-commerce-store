@@ -29,10 +29,10 @@ export default function uniSex(props) {
             <h3 style={{ marginLeft: '2em' }}> you'll feel light and cool!</h3>
           </div>
         </div>
+        ;
         <img className="coverImage" src="/TSHIRTS.jpeg" />
         <Header_2 />
         <h1 className="title">T-Shirt for uniSex</h1>
-
         <section className="section">
           <div className="products">
             {uniSexItems

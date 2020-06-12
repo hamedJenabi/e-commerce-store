@@ -60,6 +60,7 @@ export default function Home() {
       </footer>
 
       <style jsx>{`
+        
         .container {
           min-height: 100vh;
           width: %100
