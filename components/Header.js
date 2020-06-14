@@ -9,9 +9,11 @@ export default function Header(props) {
   //     window.localStorage.cartList = JSON.stringify([]);
   //   }
   // }
-  let myCart = [];
+  let cartNumber = 0;
   const lastCookies = props.list;
-  lastCookies === undefined ? (myCart = []) : (myCart = lastCookies);
+  lastCookies === undefined
+    ? (cartNumber = 0)
+    : (cartNumber = lastCookies.lenght);
   return (
     <div>
       <div>
@@ -23,7 +25,7 @@ export default function Header(props) {
                   Your Basket:
                 </p>
                 <div>
-                  <p className="notification">{myCart.length}</p>
+                  <p className="notification">{cartNumber}</p>
                   <img
                     className="cartLogo"
                     src="/trolley.svg"
@@ -135,7 +137,6 @@ export default function Header(props) {
           margin: 0px 0 0px 0px;
           width: 20px;
           background-color: rgb(185, 165, 206);
-
           height: 1.2em;
         }
         .subnav .subnavbtn {

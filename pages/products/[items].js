@@ -2,10 +2,16 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
-// import { getProductById } from '../../db.js';
 import CartButton from '../../components/CartButton';
+import { useState } from 'react';
 
 export default function products(props) {
+  const [header, setHeader] = useState(0);
+
+  const makeHeader = () => {
+    setHeader(header + 1);
+  };
+
   if (!props.product) return <div>product not found!</div>;
   return (
     <div className="container">
@@ -13,7 +19,7 @@ export default function products(props) {
         <title>CountShirty</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header />
+      <Header list={header} />
       <main>
         <section className="section">
           <div>
@@ -31,7 +37,18 @@ export default function products(props) {
             <p>Organic Combed Ring Spun *Sport Grey:</p>
             <p> made with 90% organically grown cotton. WEIGHT 140 g/m²</p>
             <div>
-              <CartButton items={props.product[0]} />
+              <button
+                style={{
+                  background: 'transparent',
+                  border: 'none',
+                  fontSize: '0',
+                }}
+                onClick={() => {
+                  makeHeader();
+                }}
+              >
+                <CartButton items={props.product[0]} />
+              </button>
             </div>
           </div>
         </section>

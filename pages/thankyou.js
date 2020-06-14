@@ -7,43 +7,7 @@ import Header from '../components/Header';
 import Form from '../components/Form';
 import Footer from '../components/Footer';
 
-export default function checkout(props) {
-  const [list, setlist] = useState(props.cartList ?? []);
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [address, setAddress] = useState('');
-  const [email, setEmail] = useState('');
-  const [selectedPayment, setSelectedPayment] = useState('');
-  const userName = firstName;
-  /*********** remove Duplicates *************/
-  function removeDuplicates(originalArray, prop) {
-    const newArray = [];
-    const lookupObject = {};
-
-    for (var i in originalArray) {
-      lookupObject[originalArray[i][prop]] = originalArray[i];
-    }
-
-    for (i in lookupObject) {
-      newArray.push(lookupObject[i]);
-    }
-    return newArray;
-  }
-  /*********** get the quantity *************/
-  const amount = list
-    .map((a) => a.id)
-    .reduce(function (amount, i) {
-      if (!amount[i]) {
-        amount[i] = 1;
-      } else {
-        amount[i] = amount[i] + 1;
-      }
-      return amount;
-    }, {});
-  const onChangeSelectPayment = (evt) => {
-    setSelectedPayment(event.target.value);
-  };
-
+export default function thankYou(props) {
   /*********** return *************/
 
   return (
@@ -52,72 +16,14 @@ export default function checkout(props) {
         <Header />
         <div className="title">
           <h1 style={{ fontSize: '70px' }}>COUNT SHIRTY</h1>
-          <h4>Check Out</h4>
+          <img className="coverImage" src="/TSHIRTS.jpeg" />
+          <h4 style={{ marginTop: '60px' }}>
+            Thank you {props.name} for your purchase
+          </h4>
+          <h4 style={{ marginTop: '60px' }}>Stay tuned for out new products</h4>
         </div>
       </div>
-      <img className="coverImage" src="/TSHIRTS.jpeg" />
-      <div className="section">
-        <Form
-          firstName={firstName}
-          setFirstName={setFirstName}
-          lastName={lastName}
-          setLastName={setLastName}
-          address={address}
-          setAddress={setAddress}
-          email={email}
-          setEmail={setEmail}
-        />
-        <div className="payment">
-          <div className="products">
-            <p>Product</p>
-            <p> Name</p>
-            <p>Quantity</p>
-            <p>Price</p>
-          </div>
 
-          <div>
-            {removeDuplicates(list, 'id').map((item, id) => {
-              return (
-                <div className="cartList" key={id}>
-                  <img className="image" src={'/' + item.image} />
-                  <p key={id}>{item.name}</p>
-                  <p key={id}>{amount[item.id]}</p>
-                  <p key={id}>{amount[item.id] * item.price}</p>
-                </div>
-              );
-            })}
-            <div className="total">
-              <p>Total price: </p> <p>€{props.totalPrice}</p>
-            </div>
-          </div>
-
-          <img className="image_2" src="/payImage.png" />
-          <select tabindex="6" onChange={onChangeSelectPayment} type="dropdown">
-            <option value="choose">Choose your payment option</option>;
-            <option value="Paypal">Paypal</option>;
-            <option value="Credit Cart">Credit Cart</option>;
-            <option value="Bank Transter">Bank Transter</option>;
-          </select>
-          <Link href="/thankyou" as="/thankyou">
-            <a>
-              <button
-                name="submit"
-                type="submit"
-                id="contact-submit"
-                data-submit="...Sending"
-                className="payButton"
-                onClick={() => {
-                  Cookies.set('name', userName);
-                  Cookies.remove('cartList');
-                  Cookies.remove('totalPrice');
-                }}
-              >
-                Pay now
-              </button>
-            </a>
-          </Link>
-        </div>
-      </div>
       <Footer />
       <style jsx>{`
         .container {
@@ -313,13 +219,11 @@ export default function checkout(props) {
 }
 
 export function getServerSideProps(context) {
-  const { totalPrice } = nextCookies(context);
-  const { cartList } = nextCookies(context);
+  const { name } = nextCookies(context);
 
   return {
     props: {
-      ...(totalPrice ? { totalPrice: totalPrice } : undefined),
-      ...(cartList ? { cartList: cartList } : undefined),
+      ...(name ? { name: name } : undefined),
     },
   };
 }

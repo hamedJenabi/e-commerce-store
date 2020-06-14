@@ -63,9 +63,8 @@ export default function cart(props) {
 
   const addToItem = (index) => {
     const newList = [...cart, index];
-    console.log('before set', newList);
     setCart(newList);
-    console.log('after set', cart);
+
     Cookies.set('cartList', newList);
   };
   //***** setting cookies ****/
@@ -104,9 +103,7 @@ export default function cart(props) {
               sum = prices.reduce(
                 (accumulator, currentValue) => accumulator + currentValue,
               );
-              {
-                Cookies.set('totalPrice', sum);
-              }
+
               return (
                 <div key={i}>
                   <div className="cartList">
@@ -148,7 +145,14 @@ export default function cart(props) {
         </section>
         <section className="total">
           <h4>Total price: </h4> <h4 data-cy={'total'}>€{sum}</h4>
-          <button className="proceedButton">Proceed to Checkout</button>
+          <button
+            className="proceedButton"
+            onClick={() => {
+              Cookies.set('totalPrice', sum);
+            }}
+          >
+            Proceed to Checkout
+          </button>
         </section>
       </main>
       <Footer />

@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import Cookies from 'js-cookie';
+import { useState } from 'react';
 
 function CartButton(props) {
   const makeCookies = () => {
