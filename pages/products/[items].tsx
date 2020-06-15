@@ -1,16 +1,38 @@
 import Head from 'next/head';
 import Link from 'next/link';
+import nextCookies from 'next-cookies';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import CartButton from '../../components/CartButton';
 import { useState } from 'react';
 
-export default function products(props) {
-  const [header, setHeader] = useState(0);
+type Product = {
+  id: string;
+  name: string;
+  type: string;
+  image: string;
+  url: string;
+  color: string;
+  size: string;
+  price: number;
+};
 
-  const makeHeader = () => {
-    setHeader(header + 1);
+type Props = {
+  product: {
+    id: string;
+    name: string;
+    type: string;
+    image: string;
+    url: string;
+    color: string;
+    size: string;
+    price: number;
   };
+  cartList: Array<Product>;
+};
+
+export default function products(props: Props) {
+  const [cart, setCart] = useState(props.cartList ?? []);
 
   if (!props.product) return <div>product not found!</div>;
   return (
@@ -19,14 +41,14 @@ export default function products(props) {
         <title>CountShirty</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header list={header} />
+      <Header list={cart.length} />
       <main>
         <section className="section">
           <div>
-            <img className="image" src={'/' + props.product[0].image}></img>
+            <img className="image" src={'/' + props.product.image}></img>
           </div>
           <div className="row">
-            <h1>{props.product[0].name}</h1>
+            <h1>{props.product.name}</h1>
             <h3>Size:</h3>
             <p>
               {/* {props.product.size.map((size) => {
@@ -43,11 +65,8 @@ export default function products(props) {
                   border: 'none',
                   fontSize: '0',
                 }}
-                onClick={() => {
-                  makeHeader();
-                }}
               >
-                <CartButton items={props.product[0]} />
+                <CartButton items={props.product} />
               </button>
             </div>
           </div>
@@ -190,6 +209,7 @@ export default function products(props) {
   );
 }
 export async function getServerSideProps(context) {
+  const { cartList } = nextCookies(context);
   const { getProductById } = await import('../../db.js');
 
   const product = await getProductById(context.query.items);
@@ -199,6 +219,7 @@ export async function getServerSideProps(context) {
   }
   return {
     props: {
+      ...(cartList ? { cartList: cartList } : undefined),
       product,
     },
   };

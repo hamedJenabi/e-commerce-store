@@ -191,7 +191,7 @@ export async function getProductById(id) {
     WHERE id = ${id}
 
   `;
-  return product;
+  return product[0];
 }
 
 // export async function deleteProductById(id) {

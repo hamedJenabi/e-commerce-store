@@ -1,19 +1,19 @@
 import Head from 'next/head';
-import { useState } from 'react';
 import Link from 'next/link';
-// import { getProduct } from '../db.js';
 import nextCookies from 'next-cookies';
-import Header from '../components/Header';
+import Header from '../components/Header.tsx';
 import Header_2 from '../components/Header_2';
 import Footer from '../components/Footer';
 import CartButton from '../components/CartButton';
+import { useState } from 'react';
 
 export default function men(props) {
+  const [cart, setCart] = useState(props.cartList ?? []);
   const menItems = props.products;
 
   return (
     <div className="container">
-      <Header list={props.cartList} />
+      <Header list={cart.length} />
       <main>
         <div className="title">
           <div className="row">
@@ -22,10 +22,10 @@ export default function men(props) {
             <h2 style={{ marginBottom: '30px' }}>for men</h2>
           </div>
           <div className="row_2">
-            <h4 style={{ marginRight: '-100px' }}>
+            <h4 style={{ marginRight: '70px' }}>
               from the moment you put me on,
             </h4>
-            <h3 style={{ margin: '30px 0' }}> you'll feel light and cool!</h3>
+            <h3 style={{ marginLeft: '70px' }}> you'll feel light and cool!</h3>
           </div>
         </div>
         <img className="coverImage" src="/TSHIRTS.jpeg" />
@@ -100,11 +100,12 @@ export default function men(props) {
           margin-top: 40px;
         }
         .row_2 {
-          margin-top: 10px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          width: 100%;
         }
-        .row_2 * + * {
-          margin-top: 10px;
-        }
+
         .coverImage {
           margin: 20px 0;
           width: 100%;

@@ -3,17 +3,18 @@ import Link from 'next/link';
 import { useState } from 'react';
 import nextCookies from 'next-cookies';
 import Cookies from 'js-cookie';
-import Header from '../components/Header';
+import Header from '../components/Header.tsx';
 import Header_2 from '../components/Header_2';
 import Footer from '../components/Footer';
 import CartButton from '../components/CartButton';
+import { useState } from 'react';
 
 export default function uniSex(props) {
+  const [cart, setCart] = useState(props.cartList ?? []);
   const uniSexItems = props.products;
-
   return (
     <div className="container">
-      <Header list={props.cartList} />
+      <Header list={cart.length} />
       <main>
         <div className="title">
           <div className="row">

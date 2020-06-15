@@ -3,7 +3,7 @@ import Link from 'next/link';
 import nextCookies from 'next-cookies';
 import { useState } from 'react';
 import Cookies from 'js-cookie';
-import Header from '../components/Header';
+import Header from '../components/Header.tsx';
 import Form from '../components/Form';
 import Footer from '../components/Footer';
 
@@ -49,7 +49,7 @@ export default function checkout(props) {
   return (
     <div>
       <div>
-        <Header />
+        <Header list={list.length} />
         <div className="title">
           <h1 style={{ fontSize: '70px' }}>COUNT SHIRTY</h1>
           <h4>Check Out</h4>
@@ -87,14 +87,14 @@ export default function checkout(props) {
               );
             })}
             <div className="total">
-              <p>Total price: </p> <p>€{props.totalPrice}</p>
+              <p>Total Price: </p> <p>€{props.totalPrice}</p>
             </div>
           </div>
 
           <img className="image_2" src="/payImage.png" />
           <select tabindex="6" onChange={onChangeSelectPayment} type="dropdown">
-            <option value="choose">Choose your payment option</option>;
-            <option value="Paypal">Paypal</option>;
+            <option value="">Choose your payment option</option>;
+            <option value="Paypal">PayPal</option>;
             <option value="Credit Cart">Credit Cart</option>;
             <option value="Bank Transter">Bank Transter</option>;
           </select>
@@ -112,7 +112,7 @@ export default function checkout(props) {
                   Cookies.remove('totalPrice');
                 }}
               >
-                Pay now
+                Click here to Pay
               </button>
             </a>
           </Link>

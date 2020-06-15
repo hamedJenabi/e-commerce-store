@@ -3,7 +3,7 @@ import Link from 'next/link';
 import nextCookies from 'next-cookies';
 import { useState } from 'react';
 import Cookies from 'js-cookie';
-import Header from '../components/Header';
+import Header from '../components/Header.tsx';
 import Form from '../components/Form';
 import Footer from '../components/Footer';
 
@@ -13,7 +13,7 @@ export default function thankYou(props) {
   return (
     <div>
       <div>
-        <Header />
+        <Header list={0} />
         <div className="title">
           <h1 style={{ fontSize: '70px' }}>COUNT SHIRTY</h1>
           <img className="coverImage" src="/TSHIRTS.jpeg" />

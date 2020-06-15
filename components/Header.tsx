@@ -1,19 +1,17 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import nextCookies from 'next-cookies';
-import Cookies from 'js-cookie';
 
-export default function Header(props) {
+type Props = { list: number };
+
+export default function Header(props: Props) {
   // if (typeof window !== 'undefined') {
   //   if (!window.localStorage.cartList) {
   //     window.localStorage.cartList = JSON.stringify([]);
   //   }
   // }
-  let cartNumber = 0;
-  const lastCookies = props.list;
-  lastCookies === undefined
-    ? (cartNumber = 0)
-    : (cartNumber = lastCookies.lenght);
+  // let cartNumber = 0;
+  // const lastCookies = props;
+  // lastCookies === undefined ? (cartNumber = 0) : (cartNumber = lastCookies);
   return (
     <div>
       <div>
@@ -25,7 +23,7 @@ export default function Header(props) {
                   Your Basket:
                 </p>
                 <div>
-                  <p className="notification">{cartNumber}</p>
+                  <p className="notification">{props.list}</p>
                   <img
                     className="cartLogo"
                     src="/trolley.svg"
@@ -138,6 +136,7 @@ export default function Header(props) {
           width: 20px;
           background-color: rgb(185, 165, 206);
           height: 1.2em;
+          color: white;
         }
         .subnav .subnavbtn {
           border: none;
