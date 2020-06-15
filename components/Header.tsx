@@ -4,14 +4,6 @@ import Link from 'next/link';
 type Props = { list: number };
 
 export default function Header(props: Props) {
-  // if (typeof window !== 'undefined') {
-  //   if (!window.localStorage.cartList) {
-  //     window.localStorage.cartList = JSON.stringify([]);
-  //   }
-  // }
-  // let cartNumber = 0;
-  // const lastCookies = props;
-  // lastCookies === undefined ? (cartNumber = 0) : (cartNumber = lastCookies);
   return (
     <div>
       <div>
