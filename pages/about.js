@@ -63,7 +63,7 @@ export default function Home() {
         
         .container {
           min-height: 100vh;
-          width: %100
+          width: 100%;
           padding: 0 0.5rem;
           display: flex;
           flex-direction: column;
