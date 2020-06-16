@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import { useState } from 'react';
 import Link from 'next/link';
 import nextCookies from 'next-cookies';
