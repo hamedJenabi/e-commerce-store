@@ -1,4 +1,8 @@
+<<<<<<< HEAD:pages/forWomen.js
 import Head from 'next/head';
+=======
+import { useState } from 'react';
+>>>>>>> 2f633a5ae41dc11d71b227c7549e4b79dfd2edcb:pages/forwomen.js
 import Link from 'next/link';
 import { useState } from 'react';
 import nextCookies from 'next-cookies';
