@@ -1,7 +1,10 @@
 require('dotenv').config();
 
 const postgres = require('postgres');
-const sql = postgres();
+const sql =
+  process.env.NODE_ENV === 'production'
+    ? postgres({ ssl: { rejectUnauthorized: false } })
+    : postgres();
 
 // const product = [
 //   {

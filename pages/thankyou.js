@@ -20,7 +20,7 @@ export default function thankYou(props) {
           <h4 style={{ marginTop: '60px' }}>
             Thank you {props.name} for your purchase
           </h4>
-          <h4 style={{ marginTop: '60px' }}>Stay tuned for out new products</h4>
+          <h4 style={{ marginTop: '30px' }}>Stay tuned for our new products</h4>
         </div>
       </div>
 
