@@ -1,6 +1,6 @@
 import Head from 'next/head';
-import { useState } from 'react';
 import Link from 'next/link';
+import { useState } from 'react';
 import nextCookies from 'next-cookies';
 import Header from '../components/Header.tsx';
 import Header_2 from '../components/Header_2';
@@ -11,11 +11,9 @@ export default function Women(props) {
   const [cart, setCart] = useState(props.cartList ?? []);
   const womenItems = props.products;
 
-  const [cartList, setCartList] = useState([]);
-
   return (
     <div className="container">
-      <Header list={cart.lenght} />
+      <Header list={cart.length} />
       <main>
         <div className="title">
           <div className="row">
@@ -259,8 +257,8 @@ export async function getServerSideProps(context) {
 
   return {
     props: {
-      products,
       ...(cartList ? { cartList: cartList } : undefined),
+      products,
     },
   };
 }

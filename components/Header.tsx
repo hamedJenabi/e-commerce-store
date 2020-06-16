@@ -41,7 +41,7 @@ export default function Header(props: Props) {
             <Link href="/forwomen">
               <a>Women</a>
             </Link>
-            <Link href="/formen">
+            <Link href="/formen" as="/formen">
               <a>Men</a>
             </Link>
             <Link href="/forall">
