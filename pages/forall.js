@@ -66,15 +66,6 @@ export default function uniSex(props) {
                         <div>My price is: €{items.price}</div>
                       </div>
                       <div className="buttonSection">
-                        {/* <button
-                          type="button"
-                          className="orderButton"
-                          onClick={() => {
-                            addToCart(items);
-                          }}
-                        >
-                          Add to Cart
-                        </button> */}
                         <CartButton items={items} addToCart={addToCart} />
                         <Link
                           href="/products/[items]"
@@ -113,8 +104,7 @@ export default function uniSex(props) {
           justify-content: center;
           width: 50%;
           text-align: center;
-          height: 20vh;
-          margin-top: 3.5rem;
+          margin: 40px 0;
         }
         .row_2 {
           display: flex;
@@ -123,6 +113,9 @@ export default function uniSex(props) {
           width: 100%;
         }
 
+        .row_2 * + * {
+          margin-top: 10px;
+        }
         .coverImage {
           margin: 20px 0;
           width: 100%;
@@ -219,35 +212,35 @@ export default function uniSex(props) {
           margin: 0;
           letter-spacing: 3px;
           padding: 0;
-          font-size: 2em;
+          font-size: 45px;
           font-weight: 300;
           text-transform: uppercase;
         }
         h2 {
           margin: 0;
           padding: 0;
-          font-size: 1.7em;
+          font-size: 40px;
           font-weight: 300;
           letter-spacing: 2px;
         }
         h3 {
           margin: 0;
           padding: 0;
-          font-size: 1.4em;
+          font-size: 30px;
           font-weight: 300;
           letter-spacing: 2px;
         }
         h4 {
           margin: 0;
           padding: 0;
-          font-size: 1.2em;
+          font-size: 26px;
           font-weight: 300;
           letter-spacing: 2px;
         }
         p {
           margin: 4px;
           padding: 0;
-          font-size: 1em;
+          font-size: 16px;
           font-weight: 300;
           letter-spacing: 2px;
         }
@@ -256,7 +249,6 @@ export default function uniSex(props) {
   );
 }
 
-/************** ServerSide  ***********/
 export async function getServerSideProps(context) {
   const { cartList } = nextCookies(context);
 

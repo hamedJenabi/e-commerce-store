@@ -100,8 +100,7 @@ export default function men(props) {
           justify-content: center;
           width: 50%;
           text-align: center;
-          height: 20vh;
-          margin-top: 3.5rem;
+          margin: 40px 0;
         }
         .row_2 {
           display: flex;
@@ -110,6 +109,9 @@ export default function men(props) {
           width: 100%;
         }
 
+        .row_2 * + * {
+          margin-top: 10px;
+        }
         .coverImage {
           margin: 20px 0;
           width: 100%;
@@ -206,35 +208,35 @@ export default function men(props) {
           margin: 0;
           letter-spacing: 3px;
           padding: 0;
-          font-size: 2.5 rem;
+          font-size: 45px;
           font-weight: 300;
           text-transform: uppercase;
         }
         h2 {
           margin: 0;
           padding: 0;
-          font-size: 2rem;
+          font-size: 40px;
           font-weight: 300;
           letter-spacing: 2px;
         }
         h3 {
           margin: 0;
           padding: 0;
-          font-size: 1.5rem;
+          font-size: 30px;
           font-weight: 300;
           letter-spacing: 2px;
         }
         h4 {
           margin: 0;
           padding: 0;
-          font-size: 1.2rem;
+          font-size: 26px;
           font-weight: 300;
           letter-spacing: 2px;
         }
         p {
           margin: 4px;
           padding: 0;
-          font-size: 1rem;
+          font-size: 16px;
           font-weight: 300;
           letter-spacing: 2px;
         }
