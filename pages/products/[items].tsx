@@ -33,6 +33,7 @@ type Props = {
 
 export default function products(props: Props) {
   const [cart, setCart] = useState(props.cartList ?? []);
+  const size = [props.product.size];
 
   const addToCart = () => {
     const newCart = [...cart];
@@ -57,24 +58,22 @@ export default function products(props: Props) {
             <h1>{props.product.name}</h1>
             <h3>Size:</h3>
             <p>
-              {props.product.size.map((size) => {
+              {size.map((size) => {
                 return size + '.';
               })}
             </p>
             <p>COMPOSITION 100% cotton - </p>
             <p>Organic Combed Ring Spun *Sport Grey:</p>
             <p> made with 90% organically grown cotton. WEIGHT 140 g/m²</p>
-            <div>
-              <button
-                style={{
-                  background: 'transparent',
-                  border: 'none',
-                  fontSize: '0',
-                }}
-              >
-                <CartButton items={props.product} addToCart={addToCart} />
-              </button>
-            </div>
+            <button
+              style={{
+                background: 'transparent',
+                border: 'none',
+                fontSize: '0',
+              }}
+            >
+              <CartButton items={props.product} addToCart={addToCart} />
+            </button>
           </div>
         </section>
       </main>
