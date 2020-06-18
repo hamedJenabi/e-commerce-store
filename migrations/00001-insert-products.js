@@ -1,29 +1,29 @@
 // insert products into the database
 exports.up = async (sql) => {
   sql`
-    INSERT INTO products(name, type, image, url, color, size, price) VALUES   
+    INSERT INTO products(name, type, image, color, size, price) VALUES   
 
-			('lazyShirt','women','TW02navy.jpg', '/about','purple','XS',20), 
-			('sweaty','women','TW02navy.jpg', '/about','purple','S',20), 
-			('bigApple','women','TW02navy.jpg', '/about','purple','M',20), 
-			('BluesIdiom','women','TW02navy.jpg', '/about','purple','L',20), 
-			('BluesTypes','women','TW02navy.jpg', '/about','purple','XL',20), 
-			('lazyShirt','men','TW02navy.jpg', '/about','purple','XS',20), 
-			('sweaty','men','TW02navy.jpg', '/about','purple','XS',20), 
-			('bigApple','men','TW02navy.jpg', '/about','purple','XS',20), 
-			('BluesIdiom','men','TW02navy.jpg', '/about','purple','XS',20), 
-			('BluesTypes','men','TW02navy.jpg', '/about','purple','XS',20), 
-			('lazyShirt','uniSex','TW02navy.jpg', '/about','purple','XS',20), 
-			('sweaty','uniSex','TW02navy.jpg', '/about','purple','XS',20), 
-			('bigApple','uniSex','TW02navy.jpg', '/about','purple','XS',20), 
-			('BluesIdiom','uniSex','TW02navy.jpg', '/about','purple','XS',20), 
-			('BluesTypes','uniSex','TW02navy.jpg', '/about','purple','XS',20)			
+			('lazyShirt(W)','women','TW02navy.jpg','purple','{ XS , S , M , L , XL }',20), 
+			('sweaty(W)','women','TW02navy.jpg','purple','{ XS , S , M , L , XL }',20), 
+			('bigApple(W)','women','TW02navy.jpg','purple','{ XS , S , M , L , XL }',20), 
+			('BluesIdiom(W)','women','TW02navy.jpg','purple','{ XS , S , M , L , XL }',20), 
+			('BluesTypes(W)','women','TW02navy.jpg','purple','{ XS , S , M , L , XL }',20), 
+			('lazyShirt(M)','men','tm16_M.jpg','purple','{ XS , S , M , L , XL }',20), 
+			('sweaty(M)','men','tm16_M.jpg','purple','{ XS , S , M , L , XL }',20), 
+			('bigApple(M)','men','tm16_M.jpg','purple','{ XS , S , M , L , XL }',20), 
+			('BluesIdiom(M)','men','tm16_M.jpg','purple','{ XS , S , M , L , XL }',20), 
+			('BluesTypes(M)','men','tm16_M.jpg','purple','{ XS , S , M , L , XL }',20), 
+			('lazyShirt(All)','uniSex','tw16_W.jpg','purple','{ XS , S , M , L , XL }',20), 
+			('sweaty(All)','uniSex','tw16_W.jpg','purple','{ XS , S , M , L , XL }',20), 
+			('bigApple(All)','uniSex','tw16_W.jpg','purple','{ XS , S , M , L , XL }',20), 
+			('BluesIdiom(All)','uniSex','tw16_W.jpg','purple','{ XS , S , M , L , XL }',20), 
+			('BluesTypes(All)','uniSex','tw16_W.jpg','purple','{ XS , S , M , L , XL }',20)			
 		
     
   `;
 };
 
-// remove proucts into the database
+//remove proucts into the database
 exports.down = async (sql) => {
   sql`
     DROP TABLE products

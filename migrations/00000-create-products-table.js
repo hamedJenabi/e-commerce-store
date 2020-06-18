@@ -5,9 +5,8 @@ exports.up = async (sql) => {
       name VARCHAR NOT NULL,
       type VARCHAR NOT NULL,
 		 	image VARCHAR NOT NULL,
-		 	url VARCHAR NOT NULL,
 		 	color VARCHAR NOT NULL,
-		 	size VARCHAR NOT NULL,
+		 	size VARCHAR[] NOT NULL,
 		 	price INT NOT NULL
     )
   `;

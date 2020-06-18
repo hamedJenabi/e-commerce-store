@@ -53,9 +53,9 @@ export default function uniSex(props) {
                         <div>My name is: {items.name}</div>
                         <div>
                           I am availabe in{' '}
-                          {/* {items.size.map((size) => {
-                            return size + '.';
-                          })} */}
+                          {items.size.map((i) => {
+                            return i + ' . ';
+                          })}
                         </div>
                         <div>I am {items.color}</div>
                         <div>My price is: €{items.price}</div>

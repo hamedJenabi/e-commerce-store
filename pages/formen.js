@@ -17,15 +17,15 @@ export default function men(props) {
       <main>
         <div className="title">
           <div className="row">
-            <p>hey there, I'm</p>
-            <h1 style={{ fontSize: '70px' }}>COUNT SHIRTY</h1>
-            <h2 style={{ marginBottom: '30px' }}>for men</h2>
+            <p style={{ marginBottom: '2rem' }}>hey there, I'm</p>
+            <h1 style={{ fontSize: '3rem' }}>COUNT SHIRTY</h1>
+            <h2 style={{ marginBottom: '2rem' }}>for men</h2>
           </div>
           <div className="row_2">
-            <h4 style={{ marginRight: '70px' }}>
+            <h4 style={{ marginRight: '3rem' }}>
               from the moment you put me on,
             </h4>
-            <h3 style={{ marginLeft: '70px' }}> you'll feel light and cool!</h3>
+            <h3 style={{ marginLeft: '3rem' }}> you'll feel light and cool!</h3>
           </div>
         </div>
         <img className="coverImage" src="/TSHIRTS.jpeg" />
@@ -51,9 +51,9 @@ export default function men(props) {
                       <div>My name is: {items.name}</div>
                       <div>
                         I am availabe in{' '}
-                        {/* {items.size.map((i) => {
-                          return i + '.';
-                        })} */}
+                        {items.size.map((i) => {
+                          return i + ' . ';
+                        })}
                       </div>
                       <div>I am {items.color}</div>
                       <div>My price is: €{items.price}</div>
@@ -97,7 +97,7 @@ export default function men(props) {
           width: 50%;
           text-align: center;
           height: 20vh;
-          margin-top: 40px;
+          margin-top: 3.5rem;
         }
         .row_2 {
           display: flex;
@@ -202,35 +202,35 @@ export default function men(props) {
           margin: 0;
           letter-spacing: 3px;
           padding: 0;
-          font-size: 45px;
+          font-size: 2.5 rem;
           font-weight: 300;
           text-transform: uppercase;
         }
         h2 {
           margin: 0;
           padding: 0;
-          font-size: 40px;
+          font-size: 2rem;
           font-weight: 300;
           letter-spacing: 2px;
         }
         h3 {
           margin: 0;
           padding: 0;
-          font-size: 30px;
+          font-size: 1.5rem;
           font-weight: 300;
           letter-spacing: 2px;
         }
         h4 {
           margin: 0;
           padding: 0;
-          font-size: 26px;
+          font-size: 1.2rem;
           font-weight: 300;
           letter-spacing: 2px;
         }
         p {
           margin: 4px;
           padding: 0;
-          font-size: 16px;
+          font-size: 1rem;
           font-weight: 300;
           letter-spacing: 2px;
         }

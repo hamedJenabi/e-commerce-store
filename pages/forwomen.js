@@ -1,10 +1,6 @@
-<<<<<<< HEAD:pages/forWomen.js
 import Head from 'next/head';
-=======
 import { useState } from 'react';
->>>>>>> 2f633a5ae41dc11d71b227c7549e4b79dfd2edcb:pages/forwomen.js
 import Link from 'next/link';
-import { useState } from 'react';
 import nextCookies from 'next-cookies';
 import Header from '../components/Header.tsx';
 import Header_2 from '../components/Header_2';
@@ -54,10 +50,10 @@ export default function Women(props) {
                     <div className=" productInfos">
                       <div>My name is: {items.name}</div>
                       <div>
-                        I am availabe in: {items.size}
-                        {/* {items.size.map((i) => {
-                          return i + '. ';
-                        })} */}
+                        I am availabe in{' '}
+                        {items.size.map((i) => {
+                          return i + ' . ';
+                        })}
                       </div>
                       <div>I am {items.color}</div>
                       <div>My price is: €{items.price}</div>
