@@ -44,10 +44,6 @@ export default function products(props: Props) {
   if (!props.product) return <div>product not found!</div>;
   return (
     <div className="container">
-      <Head>
-        <title>CountShirty</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
       <Header list={cart.length} />
       <main>
         <section className="section">

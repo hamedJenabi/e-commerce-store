@@ -26,6 +26,10 @@ export default function Header(props: Props) {
 
   return (
     <div className="sticky">
+      <Head>
+        <title>CountShirty</title>
+        <link rel="icon" href="/logo.png" />
+      </Head>
       <header className="cart">
         <Link href="/cart">
           <a>
@@ -67,10 +71,10 @@ export default function Header(props: Props) {
         <Link href="/">
           <img className="icon" src="/logo.png" />
         </Link>
-        <Link href="/">
+        <Link href="/comingsoon">
           <a>coming soon</a>
         </Link>
-        <Link href="/comingsoon">
+        <Link href="/about">
           <a>About</a>
         </Link>
       </header>

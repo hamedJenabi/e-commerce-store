@@ -1,25 +1,29 @@
-This is first try to make a e-Commerce Shop
+# Project Title
 
-// CREATE TABLE product(
-// id SERIAL PRIMARY KEY,
-// item INT NOT NULL,
-// name VARCHAR NOT NULL,
-// type VARCHAR NOT NULL,
-// image VARCHAR NOT NULL,
-// url VARCHAR NOT NULL,
-// color VARCHAR NOT NULL,
-// size VARCHAR NOT NULL,
-// price INT NOT NULL
-// );
-INSERT INTO product (item, name, type, image, url, color, size, price) VALUES
-(01, 'lazyShirt', 'women', '/TW02navy.jpg','/about', 'purple', 'XS', 20);
+E-Commerce Shop : Count Shirty
 
-{
-// id: '01',
-// name: 'lazyShirt',
-// type: 'women',
-// image: '/TW02navy.jpg',
-// url: '/about',
-// color: 'purple',
-// size: ['XS', 'S', 'M', 'L', 'XL'],
-// price: 20,
+## Getting Started
+
+First Next.js Project using:
+
+1.  Postgres and ley for DATABASE,
+2.  Cypres and jest for E2E and Unit test
+3.  This All use Cookies to save and show the 'Cart' to users
+
+## Deployment
+
+using Heroku:
+
+https://countshirty.herokuapp.com
+
+## GitHub
+
+https://github.com/hamedJenabi/e-commerce-store
+
+## Versioning
+
+This is version 1.0.0
+
+## Author
+
+Hamed Jenabi
