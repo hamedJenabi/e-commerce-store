@@ -10,6 +10,11 @@ import CartButton from '../components/CartButton';
 export default function Women(props) {
   const [cart, setCart] = useState(props.cartList ?? []);
   const womenItems = props.products;
+  const addToCart = () => {
+    const newCart = [...cart];
+    newCart.push('1');
+    setCart(newCart);
+  };
 
   return (
     <div className="container">
@@ -18,14 +23,14 @@ export default function Women(props) {
         <div className="title">
           <div className="row">
             <p>hey there, I'm</p>
-            <h1 style={{ fontSize: '70px' }}>COUNT SHIRTY</h1>
-            <h2 style={{ marginBottom: '30px' }}>for women</h2>
+            <h1 style={{ fontSize: '3rem' }}>COUNT SHIRTY</h1>
+            <h3 style={{ marginBottom: '2rem' }}>for women</h3>
           </div>
           <div className="row_2">
-            <h4 style={{ marginRight: '-100px' }}>
+            <h4 style={{ marginRight: '3rem' }}>
               from the moment you put me on,
             </h4>
-            <h3 style={{ margin: '30px 0' }}> you'll feel light and cool!</h3>
+            <h3 style={{ marginLeft: '3rem' }}> you'll feel light and cool!</h3>
           </div>
         </div>
         <img className="coverImage" src="/TSHIRTS.jpeg" />
@@ -58,13 +63,13 @@ export default function Women(props) {
                       <div>I am {items.color}</div>
                       <div>My price is: €{items.price}</div>
                       <div className="buttonSection">
-                        <CartButton items={items} />
+                        <CartButton items={items} addToCart={addToCart} />
                         <Link
                           href="/products/[items]"
                           as={'/products/' + items.id}
                         >
                           <a>
-                            <button className="orderButton" onClick={() => {}}>
+                            <button className="orderButton">
                               Product Details
                             </button>
                           </a>
@@ -96,12 +101,15 @@ export default function Women(props) {
           justify-content: center;
           width: 50%;
           text-align: center;
-          height: 20vh;
-          margin-top: 40px;
+          margin: 40px 0;
         }
         .row_2 {
-          margin-top: 10px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          width: 100%;
         }
+
         .row_2 * + * {
           margin-top: 10px;
         }

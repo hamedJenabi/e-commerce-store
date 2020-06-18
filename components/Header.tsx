@@ -1,32 +1,46 @@
 import Head from 'next/head';
 import Link from 'next/link';
+import { useState } from 'react';
 
 type Props = { list: number };
 
 export default function Header(props: Props) {
+  const [scrolling, setScrolling] = useState('30px');
+
+  if (process.browser) {
+    window.onscroll = function () {
+      scrollFunction();
+    };
+  }
+
+  function scrollFunction() {
+    if (
+      document.body.scrollTop > 50 ||
+      document.documentElement.scrollTop > 50
+    ) {
+      setScrolling('0px');
+    } else {
+      setScrolling('30px');
+    }
+  }
+
   return (
-    <div>
-      <div>
-        <header className="cart">
-          <Link href="/cart">
-            <a>
-              <div className="row">
-                <p style={{ width: '100px', alignItems: 'center' }}>
-                  Your Basket:
-                </p>
-                <div>
-                  <p className="notification">{props.list}</p>
-                  <img
-                    className="cartLogo"
-                    src="/trolley.svg"
-                    alt="cart logo"
-                  />
-                </div>
+    <div className="sticky">
+      <header className="cart">
+        <Link href="/cart">
+          <a>
+            <div className="row">
+              <p style={{ width: '100px', alignItems: 'center' }}>
+                Your Basket:
+              </p>
+              <div>
+                <p className="notification">{props.list}</p>
+                <img className="cartLogo" src="/trolley.svg" alt="cart logo" />
               </div>
-            </a>
-          </Link>
-        </header>
-      </div>
+            </div>
+          </a>
+        </Link>
+      </header>
       <header className="header">
         <Link href="/">
           <a>Home</a>
@@ -49,29 +63,42 @@ export default function Header(props: Props) {
             </Link>
           </div>
         </div>
+
         <Link href="/">
           <img className="icon" src="/logo.png" />
         </Link>
         <Link href="/">
           <a>coming soon</a>
         </Link>
-        <Link href="/about">
+        <Link href="/comingsoon">
           <a>About</a>
         </Link>
       </header>
+
       <style jsx>{`
+        .sticky {
+          position: sticky;
+          display: flex;
+          flex-direction: column;
+          top: 0;
+          z-index: 100;
+          background-color: white;
+          padding: ${scrolling} 10px;
+          transition: 0.3s;
+
+          border-bottom: 1px solid black;
+        }
         .header {
           display: flex;
           z-index: -2;
           flex-direction: row;
           justify-content: space-evenly;
-          border-bottom: 1px solid black;
           overflow: hidden;
-          margin-bottom: 40px;
+          margin-top: -20px;
         }
         .icon {
-          height: auto;
-          width: auto;
+          max-height: 6rem;
+          max-width: 6rem;
         }
         .icon :hover {
           transition: 400ms;
@@ -84,11 +111,12 @@ export default function Header(props: Props) {
           width: 100%;
           text-align: center;
         }
-        p {
+
+        /* p {
           padding: 0;
           margin: 10;
           height: 1.7em;
-        }
+        } */
 
         a {
           color: black;
@@ -96,7 +124,6 @@ export default function Header(props: Props) {
           text-decoration: none;
           letter-spacing: 0.15em;
           text-align: center;
-          padding: 10px 0;
           display: inline-block;
           position: relative;
           width: 155px;
@@ -112,12 +139,11 @@ export default function Header(props: Props) {
         .cart {
           display: flex;
           justify-content: flex-end;
-          margin: 10px 20px;
+          margin: 5px 10px;
           width: auto;
         }
         .cartLogo {
           height: auto;
-
           width: 40px;
           z-index: 0;
           position: relative;
@@ -126,7 +152,7 @@ export default function Header(props: Props) {
         .notification {
           margin: 0px 0 0px 0px;
           width: 20px;
-          background-color: rgb(185, 165, 206);
+          background-color: rgb(199, 55, 55);
           height: 1.2em;
           color: white;
         }

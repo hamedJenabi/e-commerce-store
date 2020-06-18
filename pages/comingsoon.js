@@ -6,7 +6,7 @@ import Header_2 from '../components/Header_2';
 import Footer from '../components/Footer';
 import { useState } from 'react';
 
-export default function Home(props) {
+export default function commingsoon(props) {
   const [cart, setCart] = useState(props.cartList ?? []);
   return (
     <div className="container">
@@ -15,72 +15,14 @@ export default function Home(props) {
         <div className="title">
           <div className="row">
             <p>hey there, I'm</p>
-            <h1 style={{ fontSize: '70px' }}>COUNT SHIRTY</h1>
+            <h1 style={{ fontSize: '3rem' }}>COUNT SHIRTY</h1>
           </div>
           <div className="row_2">
-            <h4 style={{ marginRight: '70px' }}>
-              from the moment you put me on,
-            </h4>
-            <h3 style={{ marginLeft: '70px' }}> you'll feel light and cool!</h3>
+            <h4>coming soon</h4>
           </div>
         </div>
         <img className="coverImage" src="/TSHIRTS.jpeg" />
         <Header_2 />
-
-        <section className="section">
-          <div className="title">
-            <div className="row">
-              <h1>our T-Shirts</h1>
-              <h3> are</h3>
-            </div>
-            <div className="row_2">
-              <h3 style={{ margin: '0px -100px 0 0' }}>organic</h3>
-              <h3 style={{ margin: '60px 0px 0 50px' }}>fair trade</h3>
-            </div>
-            <h3 style={{ margin: '20px 100px 0 0' }}>dance friendly</h3>
-            <Link href="/products" as={'/products'}>
-              <a>
-                <button className="orderButton">Our Products</button>
-              </a>
-            </Link>
-          </div>
-          <img className="image_1" src="/tm16_M.jpg" />
-
-          <img className="image_2" src="/TW02navy.jpg" />
-        </section>
-        <section className="section">
-          <div style={{ display: 'flex', width: '50%', margin: '0px 40px' }}>
-            <img className="image_1" src="/TU01T_I_BC_white_01.jpg" />
-
-            <img className="image_2" src="/TW045_I_BC_khaki_01.jpg" />
-          </div>
-          <div className="title">
-            <div className="row">
-              <h1>our designs</h1>
-              <h3>are</h3>
-            </div>
-            <div className="row_2">
-              <h3 style={{ margin: '0px -100px 0 0' }}>dance-related</h3>
-              <h3 style={{ margin: '0px 0px 0 50px' }}>plastic-free</h3>
-            </div>
-            <h3 style={{ margin: '20px 100px 0 0' }}> and somehow funny!</h3>
-            <Link href="/products" as={'/products'}>
-              <a>
-                <button className="orderButton">Our Products</button>
-              </a>
-            </Link>
-          </div>
-        </section>
-        <div className="eventSection">
-          <h1 style={{ marginTop: '40px' }}>you will see our T-Shirts</h1>
-          <h3>in these events</h3>
-        </div>
-        <section className="section">
-          <img className="image_1" src="/TU01T_I_BC_white_01.jpg" />
-          <img className="image_2" src="/TW045_I_BC_khaki_01.jpg" />
-          <img className="image_1" src="/TU01T_I_BC_white_01.jpg" />
-          <img className="image_2" src="/TW045_I_BC_khaki_01.jpg" />
-        </section>
       </main>
       <Footer />
 
@@ -96,13 +38,21 @@ export default function Home(props) {
           align-items: center;
         }
 
+        .section {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-evenly;
+          height: 100%;
+        }
+
         .row {
           display: flex;
           flex-direction: column;
           justify-content: center;
           width: 50%;
           text-align: center;
-          margin: 40px 0;
+          height: 20vh;
+          margin-top: 3.5rem;
         }
         .row_2 {
           display: flex;
@@ -110,23 +60,7 @@ export default function Home(props) {
           align-items: center;
           width: 100%;
         }
-        .section {
-          max-width: 100%;
-          overflow: hidden;
-          margin: 40px 0;
-          display: flex;
-          justify-content: center;
 
-          height: 100%;
-        }
-        .eventSection {
-          margin: 40px 0 0 80px;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          border-top: 1px solid black;
-        }
         .coverImage {
           margin: 20px 0;
           width: 100%;
@@ -138,12 +72,7 @@ export default function Home(props) {
           margin-bottom: 1em;
           margin-top: 2em;
         }
-        .image_2 {
-          margin: 10px 40px 0 0;
-          width: 300px;
-          height: auto;
-          z-index: 2;
-        }
+
         .orderButton {
           margin-top: 40px;
           background: none;

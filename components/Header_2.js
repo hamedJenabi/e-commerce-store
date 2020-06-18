@@ -14,7 +14,7 @@ export default function Header_2() {
         <Link href="/formen">
           <a>Men</a>
         </Link>
-        <Link href="/about">
+        <Link href="/comingsoon">
           <a>Accessories</a>
         </Link>
       </header>

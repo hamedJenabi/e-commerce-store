@@ -11,6 +11,12 @@ import CartButton from '../components/CartButton';
 export default function uniSex(props) {
   const [cart, setCart] = useState(props.cartList ?? []);
   const uniSexItems = props.products;
+  const addToCart = () => {
+    const newCart = [...cart];
+    newCart.push(props.products.name);
+    setCart(newCart);
+  };
+
   return (
     <div className="container">
       <Header list={cart.length} />
@@ -18,15 +24,14 @@ export default function uniSex(props) {
         <div className="title">
           <div className="row">
             <p>hey there, I'm</p>
-            <h2>unisex</h2>
-            <h1 style={{ fontSize: '4em' }}>COUNT SHIRTY</h1>
+            <h1 style={{ fontSize: '3rem' }}>COUNT SHIRTY</h1>
+            <h2 style={{ marginBottom: '2rem' }}>uni-sex</h2>
           </div>
-
           <div className="row_2">
-            <h4 style={{ marginRight: '2em' }}>
+            <h4 style={{ marginRight: '3rem' }}>
               from the moment you put me on,
             </h4>
-            <h3 style={{ marginLeft: '2em' }}> you'll feel light and cool!</h3>
+            <h3 style={{ marginLeft: '3rem' }}> you'll feel light and cool!</h3>
           </div>
         </div>
         ;
@@ -70,13 +75,13 @@ export default function uniSex(props) {
                         >
                           Add to Cart
                         </button> */}
-                        <CartButton items={items} />
+                        <CartButton items={items} addToCart={addToCart} />
                         <Link
                           href="/products/[items]"
                           as={'/products/' + items.id}
                         >
                           <a>
-                            <button className="orderButton" onClick={() => {}}>
+                            <button className="orderButton">
                               Product Details
                             </button>
                           </a>
@@ -108,7 +113,8 @@ export default function uniSex(props) {
           justify-content: center;
           width: 50%;
           text-align: center;
-          margin: 40px 0;
+          height: 20vh;
+          margin-top: 3.5rem;
         }
         .row_2 {
           display: flex;

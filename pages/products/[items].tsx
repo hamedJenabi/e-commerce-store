@@ -34,6 +34,12 @@ type Props = {
 export default function products(props: Props) {
   const [cart, setCart] = useState(props.cartList ?? []);
 
+  const addToCart = () => {
+    const newCart = [...cart];
+    newCart.push(props.product);
+    setCart(newCart);
+  };
+
   if (!props.product) return <div>product not found!</div>;
   return (
     <div className="container">
@@ -51,9 +57,9 @@ export default function products(props: Props) {
             <h1>{props.product.name}</h1>
             <h3>Size:</h3>
             <p>
-              {/* {props.product.size.map((size) => {
+              {props.product.size.map((size) => {
                 return size + '.';
-              })} */}
+              })}
             </p>
             <p>COMPOSITION 100% cotton - </p>
             <p>Organic Combed Ring Spun *Sport Grey:</p>
@@ -66,7 +72,7 @@ export default function products(props: Props) {
                   fontSize: '0',
                 }}
               >
-                <CartButton items={props.product} />
+                <CartButton items={props.product} addToCart={addToCart} />
               </button>
             </div>
           </div>

@@ -10,14 +10,18 @@ import { useState } from 'react';
 export default function men(props) {
   const [cart, setCart] = useState(props.cartList ?? []);
   const menItems = props.products;
-
+  const addToCart = () => {
+    const newCart = [...cart];
+    newCart.push('1');
+    setCart(newCart);
+  };
   return (
     <div className="container">
       <Header list={cart.length} />
       <main>
         <div className="title">
           <div className="row">
-            <p style={{ marginBottom: '2rem' }}>hey there, I'm</p>
+            <p>hey there, I'm</p>
             <h1 style={{ fontSize: '3rem' }}>COUNT SHIRTY</h1>
             <h2 style={{ marginBottom: '2rem' }}>for men</h2>
           </div>
@@ -58,7 +62,7 @@ export default function men(props) {
                       <div>I am {items.color}</div>
                       <div>My price is: €{items.price}</div>
                       <div className="buttonSection">
-                        <CartButton items={items} />
+                        <CartButton items={items} addToCart={addToCart} />
                         <Link
                           href="/products/[items]"
                           as={'/products/' + items.id}

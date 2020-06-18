@@ -22,6 +22,7 @@ function CartButton(props) {
         value="newItem"
         onClick={() => {
           makeCookies();
+          props.addToCart();
         }}
       >
         Add to cart

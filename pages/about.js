@@ -1,78 +1,75 @@
 import Head from 'next/head';
 import Header from '../components/Header.tsx';
+import Header_2 from '../components/Header_2';
+import Form from '../components/Form';
+import nextCookies from 'next-cookies';
+import { useState } from 'react';
 
-export default function Home() {
+import Footer from '../components/Footer';
+export default function about(props) {
+  const [cart, setCart] = useState(props.cartList ?? []);
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [address, setAddress] = useState('');
+  const [email, setEmail] = useState('');
+
   return (
     <div className="container">
-      <Head>
-        <title>Hamed's E-Commerce Store</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <Header />
-
+      <Header list={cart.length} />
       <main>
-        <h1 className="title">About</h1>
+        <div className="title">
+          <div className="row">
+            <p>Do you want to know more about</p>
+            <h1 style={{ fontSize: '4em' }}>COUNT SHIRTY</h1>
+          </div>
 
-        <p className="description">
-          Get started by editing <code>pages/index.js</code>
-        </p>
+          <div className="row_2">
+            <h4>or you want to contact us,</h4>
+            <h3> or just send some love?</h3>
+          </div>
+        </div>
+        <img className="coverImage" src="/TSHIRTS.jpeg" />
+        <Header_2 />
+        <div className="section">
+          <h2> About us</h2>
 
-        <div className="grid">
-          <a href="https://nextjs.org/docs" className="card">
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className="card">
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/zeit/next.js/tree/master/examples"
-            className="card"
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className="card"
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+          <p>
+            Hamed found Count Shirty in 2019 in Vienna, since he thought having
+            a "dancing friendly" T-Shirt is very important to feel compfortable
+            while moving around.
+          </p>
+          <p>
+            {' '}
+            Count Shirty T-shirts are all organic, from fair trade products, (as
+            much as possible) plastic-free and have some inside jokes about
+            dancing{' '}
+          </p>
+          <h2 style={{ marginTop: '40px' }}>
+            {' '}
+            if you want to hear from us more subscribe here
+          </h2>
+          <div className="formSection">
+            <Form
+              firstName={firstName}
+              setFirstName={setFirstName}
+              lastName={lastName}
+              setLastName={setLastName}
+              address={address}
+              setAddress={setAddress}
+              email={email}
+              setEmail={setEmail}
+            />{' '}
+            <button className="orderButton">submit</button>
+          </div>
         </div>
       </main>
-
-      <footer>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className="logo" />
-        </a>
-      </footer>
+      <Footer />
 
       <style jsx>{`
-        
         .container {
-          min-height: 100vh;
-          width: 100%;
-          padding: 0 0.5rem;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
+          margin: 0;
         }
-
         main {
-          padding: 5rem 0;
           flex: 1;
           display: flex;
           flex-direction: column;
@@ -80,132 +77,175 @@ export default function Home() {
           align-items: center;
         }
 
-        footer {
-          width: 100%;
-          height: 100px;
-          border-top: 1px solid #eaeaea;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-
-        footer img {
-          margin-left: 0.5rem;
-        }
-
-        footer a {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-
-        a {
-          color: inherit;
-          text-decoration: none;
-        }
-
-        .title a {
-          color: #0070f3;
-          text-decoration: none;
-        }
-
-        .title a:hover,
-        .title a:focus,
-        .title a:active {
-          text-decoration: underline;
-        }
-
         .title {
-          margin: 0;
-          line-height: 1.15;
-          font-size: 4rem;
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
         }
 
-        .title,
-        .description {
+        .row {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          width: 50%;
+          text-align: center;
+          margin: 40px 0;
+        }
+        .row_2 {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          width: 100%;
+        }
+
+        .coverImage {
+          margin: 20px 0;
+          width: 100%;
+        }
+        .section {
+          max-width: 100%;
+          overflow: hidden;
+          margin: 40px;
+          display: flex;
+          flex-direction: column;
+          align-content: center;
+          align-self: baseline;
+          text-align: center;
+          height: 100%;
+        }
+        .products {
+          display: flex;
+          flex-wrap: wrap;
+          height: 100%;
+          justify-content: space-around;
+        }
+        .productInfos {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
           text-align: center;
         }
 
-        .description {
-          line-height: 1.5;
-          font-size: 1.5rem;
+        .image {
+          width: 400px;
+          height: auto;
+          position: relative;
+          z-index: 1;
+          margin-bottom: 1em;
+          margin-top: 2em;
+          overflow: hidden;
         }
-
-        code {
-          background: #fafafa;
-          border-radius: 5px;
-          padding: 0.75rem;
-          font-size: 1.1rem;
-          font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
-            DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
+        .image :hover {
+          transition: 300ms;
+          transform: scale(1.05);
         }
-
-        .grid {
+        .image_2 {
+          margin: 10px 40px 0 0;
+          width: 300px;
+          height: auto;
+          z-index: 2;
+        }
+        .formSection {
           display: flex;
+          flex-direction: column;
+          align-content: center;
           align-items: center;
+          align-self: center;
           justify-content: center;
-          flex-wrap: wrap;
-
-          max-width: 800px;
-          margin-top: 3rem;
+          width: 60%;
         }
-
-        .card {
-          margin: 1rem;
-          flex-basis: 45%;
-          padding: 1.5rem;
-          text-align: left;
-          color: inherit;
+        .orderButton {
+          margin-top: -70px;
+          background: none;
+          color: black;
+          border: none;
+          text-transform: uppercase;
           text-decoration: none;
-          border: 1px solid #eaeaea;
-          border-radius: 10px;
-          transition: color 0.15s ease, border-color 0.15s ease;
+          letter-spacing: 0.15em;
+          text-align: center;
+          display: inline-block;
+          position: relative;
+          width: 170px;
+          height: 40px;
+          border: 1px solid #c8d8d4cd;
         }
-
-        .card:hover,
-        .card:focus,
-        .card:active {
-          color: #0070f3;
-          border-color: #0070f3;
+        .orderButton :hover {
+          transition: 400ms;
+          color: #fff;
+          cursor: pointer;
+          background-color: rgb(77, 141, 198);
         }
-
-        .card h3 {
-          margin: 0 0 1rem 0;
-          font-size: 1.5rem;
-        }
-
-        .card p {
-          margin: 0;
-          font-size: 1.25rem;
-          line-height: 1.5;
-        }
-
-        .logo {
-          height: 1em;
-        }
-
-        @media (max-width: 600px) {
-          .grid {
-            width: 100%;
-            flex-direction: column;
-          }
+        a {
+          color: black;
+          text-decoration: none;
+          letter-spacing: 0.15em;
+          padding: 10px 0;
         }
       `}</style>
 
       <style jsx global>{`
         html,
         body {
-          padding: 0;
+          display: block;
+          max-width: 100%;
           margin: 0;
-          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-            Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-            sans-serif;
+          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Oxygen,
+            Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
         }
-
-        * {
-          box-sizing: border-box;
+        h1 {
+          margin: 0;
+          letter-spacing: 3px;
+          padding: 0;
+          font-size: 2em;
+          font-weight: 300;
+          text-transform: uppercase;
+        }
+        h2 {
+          margin: 0;
+          padding: 0;
+          font-size: 1.7em;
+          font-weight: 300;
+          letter-spacing: 2px;
+        }
+        h3 {
+          margin: 0;
+          padding: 0;
+          font-size: 1.4em;
+          font-weight: 300;
+          letter-spacing: 2px;
+        }
+        h4 {
+          margin: 0;
+          padding: 0;
+          font-size: 1.2em;
+          font-weight: 300;
+          letter-spacing: 2px;
+        }
+        p {
+          margin: 4px;
+          padding: 0;
+          font-size: 1em;
+          font-weight: 300;
+          letter-spacing: 2px;
         }
       `}</style>
     </div>
   );
+}
+
+/************** ServerSide  ***********/
+export async function getServerSideProps(context) {
+  const { cartList } = nextCookies(context);
+
+  const { getProducts } = await import('../db.js');
+
+  const products = await getProducts();
+
+  return {
+    props: {
+      ...(cartList ? { cartList: cartList } : undefined),
+      products,
+    },
+  };
 }
