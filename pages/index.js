@@ -34,8 +34,8 @@ export default function Home(props) {
               <h3> are</h3>
             </div>
             <div className="row_2">
-              <h3 style={{ margin: '0px -100px 0 0' }}>organic</h3>
-              <h3 style={{ margin: '60px 0px 0 50px' }}>fair trade</h3>
+              <h3>organic</h3>
+              <h3 style={{ margin: '20px 0px 0 50px' }}>fair trade</h3>
             </div>
             <h3 style={{ margin: '20px 100px 0 0' }}>dance friendly</h3>
             <Link href="/products" as={'/products'}>
@@ -60,8 +60,8 @@ export default function Home(props) {
               <h3>are</h3>
             </div>
             <div className="row_2">
-              <h3 style={{ margin: '0px -100px 0 0' }}>dance-related</h3>
-              <h3 style={{ margin: '0px 0px 0 50px' }}>plastic-free</h3>
+              <h3>dance-related</h3>
+              <h3 style={{ margin: '20px 0px 0 50px' }}>plastic-free</h3>
             </div>
             <h3 style={{ margin: '20px 100px 0 0' }}> and somehow funny!</h3>
             <Link href="/products" as={'/products'}>
@@ -75,11 +75,31 @@ export default function Home(props) {
           <h1 style={{ marginTop: '40px' }}>you will see our T-Shirts</h1>
           <h3>in these events</h3>
         </div>
-        <section className="section">
-          <img className="image_1" src="/TU01T_I_BC_white_01.jpg" />
-          <img className="image_2" src="/TW045_I_BC_khaki_01.jpg" />
-          <img className="image_1" src="/TU01T_I_BC_white_01.jpg" />
-          <img className="image_2" src="/TW045_I_BC_khaki_01.jpg" />
+        <section className="section_2">
+          <div className="row">
+            <img className="image_1" src="/vhs.png" />
+            <Link href="/" as={'/'}>
+              <a>
+                <button className="orderButton">Honey Swing</button>
+              </a>
+            </Link>{' '}
+          </div>
+          <div className="row">
+            <img className="image_1" src="/vsb.jpg" />
+            <Link href="/" as={'/'}>
+              <a>
+                <button className="orderButton">Sugar Blues</button>
+              </a>
+            </Link>{' '}
+          </div>
+          <div className="row">
+            <img className="image_1" src="/bff.jpg" />
+            <Link href="/" as={'/'}>
+              <a>
+                <button className="orderButton">Blues Fever</button>
+              </a>
+            </Link>
+          </div>
         </section>
       </main>
       <Footer />
@@ -100,9 +120,10 @@ export default function Home(props) {
           display: flex;
           flex-direction: column;
           justify-content: center;
-          width: 50%;
-          text-align: center;
-          margin: 40px 0;
+
+          display: flex;
+          flex-direction: column;
+          align-items: center;
         }
         .row_2 {
           display: flex;
@@ -116,7 +137,12 @@ export default function Home(props) {
           margin: 40px 0;
           display: flex;
           justify-content: center;
-
+          height: 100%;
+        }
+        .section_2 {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-evenly;
           height: 100%;
         }
         .eventSection {
