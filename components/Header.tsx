@@ -15,8 +15,8 @@ export default function Header(props: Props) {
 
   function scrollFunction() {
     if (
-      document.body.scrollTop > 50 ||
-      document.documentElement.scrollTop > 50
+      document.body.scrollTop > 100 ||
+      document.documentElement.scrollTop > 100
     ) {
       setScrolling('0px');
     } else {
@@ -81,7 +81,8 @@ export default function Header(props: Props) {
 
       <style jsx>{`
         .sticky {
-          position: sticky;
+          position: fixed;
+          width: 100%;
           display: flex;
           flex-direction: column;
           top: 0;
@@ -89,7 +90,6 @@ export default function Header(props: Props) {
           background-color: white;
           padding: ${scrolling} 10px;
           transition: 0.3s;
-
           border-bottom: 1px solid black;
         }
         .header {

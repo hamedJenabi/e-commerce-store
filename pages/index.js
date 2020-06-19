@@ -106,7 +106,7 @@ export default function Home(props) {
 
       <style jsx>{`
         .container {
-          margin: 0;
+          margin-top: 250px;
         }
         .title {
           width: 100%;
