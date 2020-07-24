@@ -29,6 +29,7 @@ type Props = {
     price: number;
   };
   cartList: Array<Product>;
+  page: string;
 };
 
 export default function products(props: Props) {
@@ -44,8 +45,8 @@ export default function products(props: Props) {
   if (!props.product) return <div>product not found!</div>;
   return (
     <div className="container">
-      <Header list={cart.length} />
-      <main>
+      <Header list={cart.length} page="items" />
+      <main style={{ marginTop: '250px' }}>
         <section className="section">
           <div>
             <img className="image" src={'/' + props.product.image}></img>
@@ -90,6 +91,7 @@ export default function products(props: Props) {
           display: flex;
           flex-direction: row;
           justify-content: space-around;
+          margin-top: 50px;
 
           height: 100%;
           overflow: hidden;
@@ -121,7 +123,7 @@ export default function products(props: Props) {
 
         .image {
           height: auto;
-          width: 500px;
+          width: 350px;
           z-index: 1;
           overflow: hidden;
         }

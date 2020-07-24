@@ -19,7 +19,7 @@ export default function Women(props) {
   return (
     <div className="container">
       <Header list={cart.length} />
-      <main>
+      <main style={{ marginTop: '300px' }}>
         <div className="title">
           <div className="row">
             <p>hey there, I'm</p>

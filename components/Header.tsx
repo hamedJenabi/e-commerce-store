@@ -2,10 +2,11 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useState } from 'react';
 
-type Props = { list: number };
+type Props = { list: number; page: string };
 
 export default function Header(props: Props) {
   const [scrolling, setScrolling] = useState('30px');
+  const [scrolling_2, setScrolling_2] = useState('20px');
 
   if (process.browser) {
     window.onscroll = function () {
@@ -19,8 +20,10 @@ export default function Header(props: Props) {
       document.documentElement.scrollTop > 100
     ) {
       setScrolling('0px');
+      setScrolling_2('40px');
     } else {
       setScrolling('30px');
+      setScrolling_2('20px');
     }
   }
 
@@ -88,7 +91,7 @@ export default function Header(props: Props) {
           top: 0;
           z-index: 100;
           background-color: white;
-          padding: ${scrolling} 10px;
+          padding: page ==== 'items' ? 5px : ${scrolling};
           transition: 0.3s;
           border-bottom: 1px solid black;
         }
@@ -97,12 +100,12 @@ export default function Header(props: Props) {
           z-index: -2;
           flex-direction: row;
           justify-content: space-evenly;
-          overflow: hidden;
-          margin-top: -20px;
+          margin-top: -${scrolling_2};
         }
+
         .icon {
-          max-height: 6rem;
-          max-width: 6rem;
+          max-height: calc(90px - ${scrolling_2});
+          max-width: calc(90px - ${scrolling}_2);
         }
         .icon :hover {
           transition: 400ms;

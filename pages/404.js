@@ -7,7 +7,7 @@ export default function NotFound() {
     <div>
       <Header list={[]} />
 
-      <header>Page Not Found!</header>
+      <header style={{ marginTop: '300px' }}>Page Not Found!</header>
     </div>
   );
 }
