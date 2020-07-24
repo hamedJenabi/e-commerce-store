@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import nextCookies from 'next-cookies';
 import Header from '../components/Header.tsx';
 import Header_2 from '../components/Header_2';
@@ -7,11 +8,13 @@ import Footer from '../components/Footer';
 import { useState } from 'react';
 
 export default function Home(props) {
+  const router = useRouter();
+
   const [cart, setCart] = useState(props.cartList ?? []);
   return (
     <div className="container">
       <Header list={cart.length} />
-      <main>
+      <main style={{ marginTop: '300px' }}>
         <div className="title">
           <div className="row">
             <p>hey there, I'm</p>
@@ -38,11 +41,13 @@ export default function Home(props) {
               <h3 style={{ margin: '20px 0px 0 50px' }}>fair trade</h3>
             </div>
             <h3 style={{ margin: '20px 100px 0 0' }}>dance friendly</h3>
-            <Link href="/products" as={'/products'}>
-              <a>
-                <button className="orderButton">Our Products</button>
-              </a>
-            </Link>
+
+            <button
+              className="orderButton"
+              onClick={() => router.push('/products')}
+            >
+              Our Products
+            </button>
           </div>
           <img className="image_1" src="/tm16_M.jpg" />
 
@@ -64,11 +69,13 @@ export default function Home(props) {
               <h3 style={{ margin: '20px 0px 0 50px' }}>plastic-free</h3>
             </div>
             <h3 style={{ margin: '20px 100px 0 0' }}> and somehow funny!</h3>
-            <Link href="/products" as={'/products'}>
-              <a>
-                <button className="orderButton">Our Products</button>
-              </a>
-            </Link>
+
+            <button
+              className="orderButton"
+              onClick={() => router.push('/products')}
+            >
+              Our Products
+            </button>
           </div>
         </section>
         <div className="eventSection">
@@ -78,10 +85,8 @@ export default function Home(props) {
         <section className="section_2">
           <div className="row">
             <img className="image_1" src="/vhs.png" />
-            <Link href="/" as={'/'}>
-              <a>
-                <button className="orderButton">Honey Swing</button>
-              </a>
+            <Link href="viennahoneyswing.com" as={'viennahoneyswing.com'}>
+              <a className="orderButton">Honey Swing</a>
             </Link>{' '}
           </div>
           <div className="row">
@@ -94,7 +99,7 @@ export default function Home(props) {
           </div>
           <div className="row">
             <img className="image_1" src="/bff.jpg" />
-            <Link href="/" as={'/'}>
+            <Link href="bluesfever.eu" as={'bluesfever.eu'}>
               <a>
                 <button className="orderButton">Blues Fever</button>
               </a>
@@ -152,6 +157,12 @@ export default function Home(props) {
           justify-content: center;
           align-items: center;
           border-top: 1px solid black;
+        }
+        @media (max-width: 600px) {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-evenly;
+          height: 100%;
         }
         .coverImage {
           margin: 20px 0;

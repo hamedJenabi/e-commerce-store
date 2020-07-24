@@ -16,8 +16,6 @@ export default function about(props) {
   return (
     <div className="container">
       <Header list={cart.length} />
-      <main>
-        <div className="title">
           <div className="row">
             <p>Do you want to know more about</p>
             <h1 style={{ fontSize: '4em' }}>COUNT SHIRTY</h1>

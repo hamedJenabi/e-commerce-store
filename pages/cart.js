@@ -82,7 +82,7 @@ export default function cart(props) {
   return (
     <div>
       <Header list={cart.length} />
-      <main>
+      <main tyle={{ marginTop: '250px' }}>
         <div className="title">
           <p>Your</p>
           <h2>Shopping Basket {message}</h2>

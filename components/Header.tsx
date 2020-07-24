@@ -106,6 +106,8 @@ export default function Header(props: Props) {
         .icon {
           max-height: calc(90px - ${scrolling_2});
           max-width: calc(90px - ${scrolling}_2);
+          transition: 0.5s;
+
         }
         .icon :hover {
           transition: 400ms;
