@@ -16,7 +16,7 @@ export default function about(props) {
   return (
     <div className="container">
       <Header list={cart.length} />
-      <main tyle={{ marginTop: '250px' }}>
+      <main>
         <div className="title">
           <div className="row">
             <p>Do you want to know more about</p>
@@ -79,6 +79,7 @@ export default function about(props) {
 
         .title {
           width: 100%;
+          margin-top: 150px;
           display: flex;
           flex-direction: column;
           align-items: center;

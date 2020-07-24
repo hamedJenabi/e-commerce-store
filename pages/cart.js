@@ -164,7 +164,7 @@ export default function cart(props) {
           margin: 0;
         }
         .title {
-          margin-top: 150px;
+          margin-top: 250px;
           width: 100%;
           display: flex;
           flex-direction: column;
