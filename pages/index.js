@@ -85,25 +85,21 @@ export default function Home(props) {
         <section className="section_2">
           <div className="row">
             <img className="image_1" src="/vhs.png" />
-            <Link href="viennahoneyswing.com" as={'viennahoneyswing.com'}>
-              <a className="orderButton">Honey Swing</a>
-            </Link>{' '}
+            <a className="orderButton" href="https://viennhoneyswing.com">
+              <span>Honey Swing</span>
+            </a>
           </div>
           <div className="row">
             <img className="image_1" src="/vsb.jpg" />
-            <Link href="/" as={'/'}>
-              <a>
-                <button className="orderButton">Sugar Blues</button>
-              </a>
-            </Link>{' '}
+            <a className="orderButton" href="https://viennasugarblues.com">
+              <span>Sugar Blues</span>
+            </a>
           </div>
           <div className="row">
             <img className="image_1" src="/bff.jpg" />
-            <Link href="bluesfever.eu" as={'bluesfever.eu'}>
-              <a>
-                <button className="orderButton">Blues Fever</button>
-              </a>
-            </Link>
+            <a className="orderButton" href="https://bluesfever.eu">
+              <span>Blues Fever</span>
+            </a>
           </div>
         </section>
       </main>
@@ -182,18 +178,17 @@ export default function Home(props) {
           z-index: 2;
         }
         .orderButton {
-          margin-top: 40px;
           background: none;
           color: black;
           border: none;
           text-transform: uppercase;
           text-decoration: none;
           letter-spacing: 0.15em;
+          justify-content: center;
           text-align: center;
-          display: inline-block;
-          position: relative;
+          padding: 20px 0;
           width: 200px;
-          height: 70px;
+          height: auto;
           border: 1px solid #c8d8d4cd;
         }
         .orderButton :hover {
