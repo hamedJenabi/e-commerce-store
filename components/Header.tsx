@@ -5,8 +5,8 @@ import { useState } from 'react';
 type Props = { list: number; page: string };
 
 export default function Header(props: Props) {
-  const [scrolling, setScrolling] = useState('30px');
-  const [scrolling_2, setScrolling_2] = useState('20px');
+  const [scrolling, setScrolling] = useState('20px');
+  const [scrolling_2, setScrolling_2] = useState('10px');
 
   if (process.browser) {
     window.onscroll = function () {
@@ -20,10 +20,10 @@ export default function Header(props: Props) {
       document.documentElement.scrollTop > 100
     ) {
       setScrolling('0px');
-      setScrolling_2('40px');
+      setScrolling_2('30px');
     } else {
-      setScrolling('30px');
-      setScrolling_2('20px');
+      setScrolling('20px');
+      setScrolling_2('10px');
     }
   }
 
@@ -121,12 +121,6 @@ export default function Header(props: Props) {
           text-align: center;
         }
 
-        /* p {
-          padding: 0;
-          margin: 10;
-          height: 1.7em;
-        } */
-
         a {
           color: black;
           text-transform: uppercase;
@@ -135,7 +129,8 @@ export default function Header(props: Props) {
           text-align: center;
           display: inline-block;
           position: relative;
-          width: 155px;
+          width: 170px;
+          padding: 14px 20px;
         }
 
         a:hover {
@@ -168,21 +163,26 @@ export default function Header(props: Props) {
         .subnav .subnavbtn {
           border: none;
           outline: none;
+          font-size: 16px;  
+          padding: 14px 16px;
           margin: 0;
         }
 
         .subnav-content {
-          padding-top: 20px;
+          padding: 20px 0px 20px 0px;
           display: none;
           position: absolute;
-          z-index: 1;
+          z-index: 100;
         }
 
         .subnav:hover .subnav-content {
           display: flex;
           flex-direction: column;
-          height: 110px;
-          width: 100px;
+          justify-content: center;
+          align-items: center;
+          height: 150px;
+          width: 150px;
+          background-color: white;
         }
       `}</style>
       <style jsx global>{`

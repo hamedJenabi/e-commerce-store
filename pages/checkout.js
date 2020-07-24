@@ -133,6 +133,7 @@ export default function checkout(props) {
           font-size: 16px;
         }
         .title {
+          margin-top: 150px;
           width: 100%;
           display: flex;
           flex-direction: column;
